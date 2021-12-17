@@ -97,6 +97,16 @@ app_license = "MIT"
 #	}
 # }
 
+
+
+doctype_js = {
+    "Purchase Order" : "custom/purchase_order/purchase_order.js",
+    "Sales Order" : "custom/sales_order/sales_order.js",
+    "Delivery Note" : "custom/delivery_note/delivery_note.js",
+    "Sales Invoice" : "custom/sales_invoice/sales_invoice.js",
+    "Purchase Receipt" : "custom/purchase_receipt/purchase_receipt.js",
+    "Purchase Invoice" : "custom/purchase_invoice/purchase_invoice.js"
+}
 # Scheduled Tasks
 # ---------------
 
@@ -142,34 +152,51 @@ app_license = "MIT"
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
 
-# User Data Protection
-# --------------------
-
-user_data_fields = [
-	{
-		"doctype": "{doctype_1}",
-		"filter_by": "{filter_by}",
-		"redact_fields": ["{field_1}", "{field_2}"],
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_2}",
-		"filter_by": "{filter_by}",
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_3}",
-		"strict": False,
-	},
-	{
-		"doctype": "{doctype_4}"
-	}
+fixtures = [
+    {"dt": "Custom Field", "filters": [
+        [
+            "name", "in", [
+                  "Item-item_model",
+                  "Item-item_name_ar",
+                  "Item-specs",
+                  "Item-pump",
+                  "Item-on_off",
+                  "Item-gas",
+                  "Item-weight_kg",
+                  "Item-weight_ton",
+                  "Item-air_condition_specs",
+                  "Item-column_break_30",
+                  "item-refrigerator_specs",
+                  "item-type_ref_freezer",
+                  "item-door_ref_freezer",
+                  "item-column_break_ref",
+                  "item-size_ref_freezer",
+                  "item-color_ref_freezer",
+                  "item-heaters_cookers_specs",
+                  "item-type_heater_cookers",
+                  "item-shape_heaters_cookers",
+                  "item-column_break_43",
+                  "item-color_heaters_cookers",
+                  "item-size_heaters_cookers",
+                  "item-generators_others",
+                  "item-type_generators",
+                  "item-size_generators",
+                  "Item-column_break_48",
+                  "Item-vrf_specs",
+                  "Item-type_vrf",
+                  "Item-electricity_vrf",
+                  "Item-column_break_53",
+		          "Item-weight_vrf",
+		          "Purchase Receipt-container_number",
+		          "Item-others",
+		          "Sales Order-mode_of_payment",
+                  "Item-tv_column_break",
+                  "Item-smart_tv",
+                  "Item-screen_tv",
+                  "Item-size_tv",
+                  "Item-tv_specs",
+                  "Sales Order-branch"
+            ]
+        ]
+    ]}
 ]
-
-# Authentication and authorization
-# --------------------------------
-
-# auth_hooks = [
-# 	"masar_trust.auth.validate"
-# ]
-
