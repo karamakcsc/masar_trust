@@ -202,8 +202,7 @@ fixtures = [
                   "Journal Entry-column_break_14",
                   "Journal Entry-customer_sub",
                   "Journal Entry-project",
-                  "Journal Entry Account-section_break_13",
-                  "Journal Entry-section_break_17"
+                  "Journal Entry Account-section_break_13"
 
             ]
         ]
