@@ -105,7 +105,7 @@
   },
   {
    "fieldname": "distributed_customer_sub",
-   "fieldtype": "Link",
+   "fieldtype": "Table",
    "label": "Distributed Customer Sub",
    "options": "Distributed Customer Sub"
   }
@@ -113,7 +113,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-12-19 13:19:06.856923",
+ "modified": "2021-12-19 15:12:55.054806",
  "modified_by": "Administrator",
  "module": "Masar Trust",
  "name": "Customer Sub",
