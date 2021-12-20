@@ -32,28 +32,28 @@ frm.refresh_fields();
 }
 });
 
-// frappe.ui.form.on('Delivery Note', {
-//   Validate: function(frm) {
-//     $.each(frm.doc.items, function(i, d) {
-//       d.cost_center = frm.doc.cost_center;
-//     });
-//   }
-// });
-//
-//
-// frappe.ui.form.on('Delivery Note', {
-//   cost_center: function(frm) {
-//     $.each(frm.doc.items, function(i, d) {
-//       d.cost_center = frm.doc.cost_center;
-//     });
-//   }
-// });
-//
-//
-// frappe.ui.form.on("Delivery Note Item", "items_add", function(frm, cdt, cdn) {
-//     var d = locals[cdt][cdn];
-//
-//         if(frm.doc.cost_center != ""){
-//             d.cost_center = frm.doc.cost_center;
-//         }
-//   });
+frappe.ui.form.on('Delivery Note', {
+  Validate: function(frm) {
+    $.each(frm.doc.items, function(i, d) {
+      d.cost_center = frm.doc.cost_center;
+    });
+  }
+});
+
+
+frappe.ui.form.on('Delivery Note', {
+  cost_center: function(frm) {
+    $.each(frm.doc.items, function(i, d) {
+      d.cost_center = frm.doc.cost_center;
+    });
+  }
+});
+
+
+frappe.ui.form.on("Delivery Note Item", "items_add", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+
+        if(frm.doc.cost_center != ""){
+            d.cost_center = frm.doc.cost_center;
+        }
+  });
