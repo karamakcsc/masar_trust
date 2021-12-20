@@ -205,13 +205,13 @@ fixtures = [
                   "Journal Entry Account-section_break_13",
                   "Sales Order-accounting_dimensions",
                   "Sales Order-cost_center",
-                  "Sales Order-_dimensions_column",
+                  "Sales Order-dimensions_column",
                   "Sales Order-customer_sub",
                   "Sales Order-section_break_52",
                   "Sales Order-project_code",
                   "Delivery Note-project_code",
-                  "Delivery Note-column_break_53",
-                  "Delivery Note-section_break_54",
+                  "Delivery Note-column_break_52",
+                  "Delivery Note-section_break_56",
                   "Delivery Note-accounting_dimensions",
                   "Delivery Note-cost_center"
 
