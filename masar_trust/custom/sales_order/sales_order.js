@@ -34,6 +34,7 @@ frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
 frm.refresh_fields();
 }
 });
+
 frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
 var df=frappe.meta.get_docfield("Sales Order", "mode_of_payment",frm.doc.name);
 df.reqd=1;
@@ -41,34 +42,8 @@ frm.refresh_fields();
 }
 });
 
-frappe.ui.form.on('Sales Order', {
-  Validate: function(frm) {
-    $.each(frm.doc.items, function(i, d) {
-      d.cost_center = frm.doc.cost_center;
-      d.customer_sub = frm.doc.customer_sub;
-      d.project_code = frm.doc.project_code;
-    });
-  }
+frappe.ui.form.on("Sales Order", {
+refresh: function(frm) {
+frm.doc.project = frm.doc.project_code;
+}
 });
-
-
-frappe.ui.form.on('Sales Order', {
-  cost_center: function(frm) {
-    $.each(frm.doc.items, function(i, d) {
-      d.cost_center = frm.doc.cost_center;
-      d.customer_sub = frm.doc.customer_sub;
-      d.project = frm.doc.project;
-    });
-  }
-});
-
-
-frappe.ui.form.on("Sales Order Item", "items_add", function(frm, cdt, cdn) {
-    var d = locals[cdt][cdn];
-
-        if(frm.doc.cost_center != ""){
-            d.cost_center = frm.doc.cost_center;
-            d.customer_sub = frm.doc.customer_sub;
-            d.project = frm.doc.project;
-        }
-  });
