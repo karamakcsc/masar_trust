@@ -7,6 +7,7 @@ frappe.ui.form.on("Journal Entry","refresh", function(frm) {
          $.each(frm.doc.accounts, function(i, d) {
            d.cost_center = frm.doc.cost_center;
            d.customer_sub = frm.doc.customer_sub;
+           d.project = frm.doc.project;
          });
        }
      });
@@ -17,6 +18,7 @@ frappe.ui.form.on("Journal Entry","refresh", function(frm) {
          $.each(frm.doc.accounts, function(i, d) {
            d.cost_center = frm.doc.cost_center;
            d.customer_sub = frm.doc.customer_sub;
+           d.project = frm.doc.project;
          });
        }
      });
@@ -28,5 +30,6 @@ frappe.ui.form.on("Journal Entry","refresh", function(frm) {
              if(frm.doc.cost_center != ""){
                  d.cost_center = frm.doc.cost_center;
                  d.customer_sub = frm.doc.customer_sub;
+                 d.project = frm.doc.project;
              }
        });

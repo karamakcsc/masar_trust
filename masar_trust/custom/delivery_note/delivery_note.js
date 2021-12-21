@@ -36,6 +36,8 @@ frappe.ui.form.on('Delivery Note', {
   Validate: function(frm) {
     $.each(frm.doc.items, function(i, d) {
       d.cost_center = frm.doc.cost_center;
+      d.customer_sub = frm.doc.customer_sub;
+      d.project_code = frm.doc.project_code;
     });
   }
 });
@@ -45,6 +47,8 @@ frappe.ui.form.on('Delivery Note', {
   cost_center: function(frm) {
     $.each(frm.doc.items, function(i, d) {
       d.cost_center = frm.doc.cost_center;
+      d.customer_sub = frm.doc.customer_sub;
+      d.project_code = frm.doc.project_code;
     });
   }
 });
@@ -55,5 +59,7 @@ frappe.ui.form.on("Delivery Note Item", "items_add", function(frm, cdt, cdn) {
 
         if(frm.doc.cost_center != ""){
             d.cost_center = frm.doc.cost_center;
+            d.customer_sub = frm.doc.customer_sub;
+            d.project_code = frm.doc.project_code;
         }
   });

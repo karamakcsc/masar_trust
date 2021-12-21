@@ -187,10 +187,10 @@ fixtures = [
                   "Item-type_vrf",
                   "Item-electricity_vrf",
                   "Item-column_break_53",
-		          "Item-weight_vrf",
-		          "Purchase Receipt-container_number",
-		          "Item-others",
-		          "Sales Order-mode_of_payment",
+    	          "Item-weight_vrf",
+    	          "Purchase Receipt-container_number",
+    	          "Item-others",
+    	          "Sales Order-mode_of_payment",
                   "Item-tv_column_break",
                   "Item-smart_tv",
                   "Item-screen_tv",
@@ -215,7 +215,7 @@ fixtures = [
                   "Delivery Note-accounting_dimensions",
                   "Delivery Note-cost_center"
 
-            ]
+                  ]
         ]
     ]}
 ]
