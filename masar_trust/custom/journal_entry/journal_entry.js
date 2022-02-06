@@ -1,3 +1,26 @@
+frappe.ui.form.on("Journal Entry",{ before_load:function(frm) {
+  var df=frappe.meta.get_docfield("Journal Entry", "naming_series",frm.doc.name);
+  df.read_only=1;
+frm.refresh_fields();
+}
+});
+
+frappe.ui.form.on("Journal Entry","voucher_type", function(frm) {
+
+if (frm.doc.voucher_type == "Journal Entry") {
+  frm.set_value('naming_series', 'ACC-JV-.YYYY.-')
+  refresh_field("naming_series");
+  }
+else if (frm.doc.voucher_type == "Cash Entry صرف العراق") {
+  frm.set_value('naming_series', 'ACC-BC-.YYYY.-')
+  refresh_field("naming_series");
+}
+else if (frm.doc.voucher_type == "Depreciation Entry") {
+  frm.set_value('naming_series', 'ACC-DP-.YYYY.-')
+  refresh_field("naming_series");
+}
+});
+
 frappe.ui.form.on("Journal Entry","refresh", function(frm) {
      frm.toggle_display("finance_book", false);
      });
