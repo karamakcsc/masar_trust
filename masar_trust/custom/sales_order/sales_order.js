@@ -18,19 +18,30 @@ frappe.ui.form.on("Sales Order","refresh", function(frm) {
      });
 
 frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
+ var df=frappe.meta.get_docfield("Sales Order", "naming_series",frm.doc.name);
+ df.read_only=1;
+frm.refresh_fields();
+}
+});
+
+frappe.ui.form.on("Sales Order","branch", function(frm) {
+if (frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
+  frm.set_value('naming_series', 'SAL-ORD1-.YYYY.-')
+  refresh_field("naming_series");
+}
+else if (frm.doc.branch == "معرض النجف الاشرف") {
+  frm.set_value('naming_series', 'SAL-ORD4-.YYYY.-')
+  refresh_field("naming_series");
+}
+});
+
+frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
   var df=frappe.meta.get_docfield("Sales Order Item", "gross_profit",frm.doc.name);
   df.hidden=1;
   var df=frappe.meta.get_docfield("Sales Order Item", "valuation_rate",frm.doc.name);
   df.hidden=1;
   var df=frappe.meta.get_docfield("Sales Order Item", "delivery_date",frm.doc.name);
   df.hidden=1;
-frm.refresh_fields();
-}
-});
-
-frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
-  var df=frappe.meta.get_docfield("Sales Order", "naming_series",frm.doc.name);
-  df.read_only=1;
 frm.refresh_fields();
 }
 });

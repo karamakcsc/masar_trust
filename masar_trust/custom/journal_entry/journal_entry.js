@@ -6,12 +6,7 @@ frm.refresh_fields();
 });
 
 frappe.ui.form.on("Journal Entry","voucher_type", function(frm) {
-
-if (frm.doc.voucher_type == "Journal Entry") {
-  frm.set_value('naming_series', 'ACC-JV-.YYYY.-')
-  refresh_field("naming_series");
-  }
-else if (frm.doc.voucher_type == "Cash Entry صرف العراق") {
+if (frm.doc.voucher_type == "Cash Entry-Baghdad") {
   frm.set_value('naming_series', 'ACC-BC-.YYYY.-')
   refresh_field("naming_series");
 }
@@ -19,6 +14,10 @@ else if (frm.doc.voucher_type == "Depreciation Entry") {
   frm.set_value('naming_series', 'ACC-DP-.YYYY.-')
   refresh_field("naming_series");
 }
+else {
+  frm.set_value('naming_series', 'ACC-JV-.YYYY.-')
+  refresh_field("naming_series");
+  }
 });
 
 frappe.ui.form.on("Journal Entry","refresh", function(frm) {

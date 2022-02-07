@@ -22,6 +22,34 @@ frappe.ui.form.on("Delivery Note","refresh", function(frm) {
 });
 
 frappe.ui.form.on("Delivery Note",{ before_load:function(frm) {
+ var df=frappe.meta.get_docfield("Delivery Note", "naming_series",frm.doc.name);
+ df.read_only=1;
+frm.refresh_fields();
+}
+});
+
+frappe.ui.form.on("Delivery Note", {
+  branch: function (frm) {
+    if (frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
+    frm.set_value('naming_series', 'MAT-DN1-.YYYY.-')
+    }
+    else if (frm.doc.branch == "معرض النجف الاشرف") {
+    frm.set_value('naming_series', 'MAT-DN4-.YYYY.-')
+     }
+     refresh_field("naming_series");
+  },
+  is_return: function (frm) {
+    if (frm.doc.branch == "المعرض الرئيسي (الكرادة)" && frm.doc.is_return == 1) {
+    frm.set_value('naming_series', 'MAT-DN1-RET-.YYYY.-')
+    }
+    else if (frm.doc.branch == "معرض النجف الاشرف" && frm.doc.is_return == 1) {
+    frm.set_value('naming_series', 'MAT-DN4-RET-.YYYY.-')
+     }
+    refresh_field("naming_series");
+  }
+});
+
+frappe.ui.form.on("Delivery Note",{ before_load:function(frm) {
 var df=frappe.meta.get_docfield("Delivery Note Item", "uom",frm.doc.name);
 df.hidden=1;
 var df=frappe.meta.get_docfield("Delivery Note Item", "rate",frm.doc.name);
