@@ -20,6 +20,10 @@ frappe.ui.form.on("Sales Order","refresh", function(frm) {
 frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
  var df=frappe.meta.get_docfield("Sales Order", "naming_series",frm.doc.name);
  df.read_only=1;
+ var df=frappe.meta.get_docfield("Sales Order", "branch",frm.doc.name);
+ df.read_only=1;
+ var df=frappe.meta.get_docfield("Sales Order", "cost_center",frm.doc.name);
+ df.read_only=1;
 frm.refresh_fields();
 }
 });
@@ -27,11 +31,13 @@ frm.refresh_fields();
 frappe.ui.form.on("Sales Order","branch", function(frm) {
 if (frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
   frm.set_value('naming_series', 'SAL-ORD1-.YYYY.-')
-  refresh_field("naming_series");
+  frm.set_value('cost_center', '15 - المعرض الرئيسي (الكرادة) - TRUST')
+  frm.refresh_fields();
 }
 else if (frm.doc.branch == "معرض النجف الاشرف") {
   frm.set_value('naming_series', 'SAL-ORD4-.YYYY.-')
-  refresh_field("naming_series");
+  frm.set_value('cost_center', '13 - معرض النجف الاشرف - TRUST')
+  frm.refresh_fields();
 }
 });
 

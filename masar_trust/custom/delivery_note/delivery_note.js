@@ -24,6 +24,10 @@ frappe.ui.form.on("Delivery Note","refresh", function(frm) {
 frappe.ui.form.on("Delivery Note",{ before_load:function(frm) {
  var df=frappe.meta.get_docfield("Delivery Note", "naming_series",frm.doc.name);
  df.read_only=1;
+ var df=frappe.meta.get_docfield("Delivery Note", "branch",frm.doc.name);
+ df.read_only=1;
+ var df=frappe.meta.get_docfield("Delivery Note", "cost_center",frm.doc.name);
+ df.read_only=1;
 frm.refresh_fields();
 }
 });
@@ -32,18 +36,23 @@ frappe.ui.form.on("Delivery Note", {
   branch: function (frm) {
     if (frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
     frm.set_value('naming_series', 'MAT-DN1-.YYYY.-')
+    frm.set_value('cost_center', '15 - المعرض الرئيسي (الكرادة) - TRUST')
     }
     else if (frm.doc.branch == "معرض النجف الاشرف") {
     frm.set_value('naming_series', 'MAT-DN4-.YYYY.-')
+    frm.set_value('cost_center', '13 - معرض النجف الاشرف - TRUST')
      }
      refresh_field("naming_series");
   },
   is_return: function (frm) {
     if (frm.doc.branch == "المعرض الرئيسي (الكرادة)" && frm.doc.is_return == 1) {
     frm.set_value('naming_series', 'MAT-DN1-RET-.YYYY.-')
+    frm.set_value('cost_center', '15 - المعرض الرئيسي (الكرادة) - TRUST')
+
     }
     else if (frm.doc.branch == "معرض النجف الاشرف" && frm.doc.is_return == 1) {
     frm.set_value('naming_series', 'MAT-DN4-RET-.YYYY.-')
+    frm.set_value('cost_center', '13 - معرض النجف الاشرف - TRUST')
      }
     refresh_field("naming_series");
   }
