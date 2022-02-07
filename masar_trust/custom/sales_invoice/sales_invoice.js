@@ -42,32 +42,3 @@ frappe.ui.form.on("Sales Invoice", {
     refresh_field("naming_series");
   }
 });
-
-
-// frappe.ui.form.on("Sales Invoice","branch", function(frm) {
-// if (frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
-//     frm.set_value('naming_series', 'ACC-SINV1-.YYYY.-')
-// }
-// else if (frm.doc.is_return == 1 && frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
-//   frm.set_value('naming_series', 'ACC-SINV1-RET-.YYYY.-')
-// }
-// else if (frm.doc.branch == "معرض النجف الاشرف") {
-//   frm.set_value('naming_series', 'ACC-SINV4-.YYYY.-')
-// }
-//   refresh_field("naming_series");
-// });
-
-// frappe.ui.form.on("Delivery Note","is_return", function(frm) {
-// if (frm.doc.is_return == 1 && frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
-//   frm.set_value('naming_series', 'ACC-SINV1-RET-.YYYY.-')
-// }
-// refresh_field("naming_series");
-// // else {
-// // frm.set_value('naming_series', 'ACC-SINV1-.YYYY.-')
-// //   refresh_field("naming_series");
-// // }
-// // // else if (frm.doc.is_return == 1 && frm.doc.branch == "معرض النجف الاشرف") {
-// // //   frm.set_value('naming_series', 'ACC-SINV4-RET-.YYYY.-')
-// // //   refresh_field("naming_series");
-// // // }
-// });
