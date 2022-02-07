@@ -213,7 +213,8 @@ fixtures = [
                   "Delivery Note-column_break_52",
                   "Delivery Note-section_break_56",
                   "Delivery Note-accounting_dimensions",
-                  "Delivery Note-cost_center"
+                  "Delivery Note-cost_center",
+                  "Sales Invoice-branch",
 
                   ]
         ]
