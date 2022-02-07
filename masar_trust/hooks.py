@@ -106,7 +106,9 @@ doctype_js = {
     "Sales Invoice" : "custom/sales_invoice/sales_invoice.js",
     "Purchase Receipt" : "custom/purchase_receipt/purchase_receipt.js",
     "Purchase Invoice" : "custom/purchase_invoice/purchase_invoice.js",
-    "Journal Entry" : "custom/journal_entry/journal_entry.js"
+    "Journal Entry" : "custom/journal_entry/journal_entry.js",
+    "POS Invoice" : "custom/pos_invoice/pos_invoice.js",
+    "Payment Entry" : "custom/payment_entry/payment_entry.js"
 }
 # Scheduled Tasks
 # ---------------
