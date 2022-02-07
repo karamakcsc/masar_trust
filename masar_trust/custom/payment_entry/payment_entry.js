@@ -8,14 +8,29 @@ frm.refresh_fields();
 frappe.ui.form.on("Payment Entry","mode_of_payment", function(frm) {
 if (frm.doc.mode_of_payment == "نقدي المعرض الرئيسي (الكرادة)") {
   frm.set_value('naming_series', 'ACC-PAY1-.YYYY.-')
-  refresh_field("naming_series");
+  frm.set_value('branch', 'المعرض الرئيسي (الكرادة)')
+  frm.set_value('cost_center', '15 - المعرض الرئيسي (الكرادة) - TRUST')
+  // refresh_field("naming_series");
+  // refresh_field("branch");
+  // refresh_field("cost_center");
+  frm.refresh_fields();
 }
 else if (frm.doc.mode_of_payment == "نقدي معرض النجف الاشرف"){
   frm.set_value('naming_series', 'ACC-PAY4-.YYYY.-')
-  refresh_field("naming_series");
+  frm.set_value('branch', 'معرض النجف الاشرف')
+  frm.set_value('cost_center', '13 - معرض النجف الاشرف - TRUST')
+  // refresh_field("naming_series");
+  // refresh_field("branch");
+  // refresh_field("cost_center");
+  frm.refresh_fields();
 }
 else if (frm.doc.mode_of_payment == "نقدي صيانة" ){
   frm.set_value('naming_series', 'ACC-PAYS-.YYYY.-')
-  refresh_field("naming_series");
+  frm.set_value('branch', 'قسم الصيانة')
+  frm.set_value('cost_center', '11 - مركز الصيانة - TRUST')
+  // refresh_field("naming_series");
+  // refresh_field("branch");
+  // refresh_field("cost_center");
+  frm.refresh_fields();
 }
 });
