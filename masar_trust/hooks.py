@@ -216,7 +216,8 @@ fixtures = [
                   "Delivery Note-accounting_dimensions",
                   "Delivery Note-cost_center",
                   "Sales Order-branch",
-                  "Delivery Note-branch"
+                  "Delivery Note-branch",
+                  "Payment Entry-customer_sub"
 
                   ]
         ]
