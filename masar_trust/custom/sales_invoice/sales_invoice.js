@@ -18,10 +18,6 @@ frappe.ui.form.on("Sales Invoice","refresh", function(frm) {
 frappe.ui.form.on("Sales Invoice",{ before_load:function(frm) {
  var df=frappe.meta.get_docfield("Sales Invoice", "naming_series",frm.doc.name);
  df.read_only=1;
- var df=frappe.meta.get_docfield("Sales Invoice", "branch",frm.doc.name);
- df.read_only=1;
- var df=frappe.meta.get_docfield("Sales Invoice", "cost_center",frm.doc.name);
- df.read_only=1;
 frm.refresh_fields();
 }
 });

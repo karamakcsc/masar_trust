@@ -198,7 +198,6 @@ fixtures = [
                   "Item-screen_tv",
                   "Item-size_tv",
                   "Item-tv_specs",
-                  "Sales Order-branch",
                   "Journal Entry-accounting_dimensions",
                   "Journal Entry-cost_center",
                   "Journal Entry-column_break_14",
@@ -215,7 +214,9 @@ fixtures = [
                   "Delivery Note-column_break_52",
                   "Delivery Note-section_break_56",
                   "Delivery Note-accounting_dimensions",
-                  "Delivery Note-cost_center"
+                  "Delivery Note-cost_center",
+                  "Sales Order-branch",
+                  "Delivery Note-branch"
 
                   ]
         ]

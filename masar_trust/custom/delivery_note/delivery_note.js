@@ -24,10 +24,6 @@ frappe.ui.form.on("Delivery Note","refresh", function(frm) {
 frappe.ui.form.on("Delivery Note",{ before_load:function(frm) {
  var df=frappe.meta.get_docfield("Delivery Note", "naming_series",frm.doc.name);
  df.read_only=1;
- var df=frappe.meta.get_docfield("Delivery Note", "branch",frm.doc.name);
- df.read_only=1;
- var df=frappe.meta.get_docfield("Delivery Note", "cost_center",frm.doc.name);
- df.read_only=1;
 frm.refresh_fields();
 }
 });

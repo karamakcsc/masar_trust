@@ -20,10 +20,6 @@ frappe.ui.form.on("Sales Order","refresh", function(frm) {
 frappe.ui.form.on("Sales Order",{ before_load:function(frm) {
  var df=frappe.meta.get_docfield("Sales Order", "naming_series",frm.doc.name);
  df.read_only=1;
- var df=frappe.meta.get_docfield("Sales Order", "branch",frm.doc.name);
- df.read_only=1;
- var df=frappe.meta.get_docfield("Sales Order", "cost_center",frm.doc.name);
- df.read_only=1;
 frm.refresh_fields();
 }
 });
