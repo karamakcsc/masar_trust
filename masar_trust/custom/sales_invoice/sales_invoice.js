@@ -1,6 +1,6 @@
 frappe.ui.form.on("Sales Invoice","refresh", function(frm) {
      frm.toggle_display("naming_series", false);
-     frm.toggle_display("is_pos", false);
+     //frm.toggle_display("is_pos", false);
      frm.toggle_display("is_debit_note", false);
      frm.toggle_display("customer_po_details", false);
      frm.toggle_display("time_sheet_list", false);
@@ -11,7 +11,7 @@ frappe.ui.form.on("Sales Invoice","refresh", function(frm) {
      frm.toggle_display("printing_details", false);
      frm.toggle_display("sales_team_section_break", false);
      frm.toggle_display("subscription_section", false);
-     frm.toggle_display("update_stock", false);
+     //frm.toggle_display("update_stock", false);
      frm.toggle_display("more_information", false);
 });
 
