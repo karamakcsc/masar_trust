@@ -29,17 +29,17 @@ def get_data(filters):
 	# 						WHERE (posting_date BETWEEN '{_from}' AND '{to}')
 	# 						 {conditions};""")
 
-	data = frappe.db.sql(f"""SELECT tpe.party, tpe.mode_of_payment, tpe.customer_sub, tpe.paid_amount, tpe.cost_center
+	data = frappe.db.sql(f"""SELECT tpe.name, tpe.payment_type, tpe.party, tpe.mode_of_payment, tpe.customer_sub, tpe.paid_amount, tpe.cost_center
 							FROM `tabPayment Entry` tpe
-
-							WHERE (posting_date BETWEEN '{_from}' AND '{to}')
+							LEFT Join `tabCustomer` tc ON tpe.party_name = tc.name
+							WHERE tc.customer_group != 'Employees' AND (posting_date BETWEEN '{_from}' AND '{to}')
 							 {conditions};""")
 	return data
 
 def get_columns():
 	return [
-	   #"Reference Number: Data:200",
-	   #"Payment Type: Data:120",
+	   "Name: Link/Payment Entry:200",
+	   "Payment Type: Data:120",
 	   # "Party Type: Data:150",
 	   "Party Name: Link/Customer:200",
 	   "Mode of Payment: Data:200",
@@ -52,28 +52,3 @@ def get_columns():
 	   #"Status:150",
 	   #"User:200"
 	]
-
-
-	def get_customer_sub_list(filters):
-		from frappe.core.doctype.user_permission.user_permission import get_permitted_documents
-
-		condition = ''
-		user_permitted_customer_sub = get_permitted_documents('Customer Sub')
-		value = ()
-		if user_permitted_warehouse:
-			condition = "and name in %s"
-			value = set(user_permitted_customer_sub)
-		elif not permitted_customer_sub and filters.get("customer_sub"):
-			condition = "and name = %s"
-			value = filters.get("customer_sub")
-
-		return frappe.db.sql("""select name
-			from `tabPayment Entry` where is_group = 0
-			{condition}""".format(condition=condition), value, as_dict=1)
-
-	def add_custmer_sub_column(columns, customer_sub_list):
-		if len(customer_sub_list) > 1:
-			columns += [_("customer_sub")+":Int:50"]
-
-		for cs in customer_sub_list:
-			columns += [_(cs.name)+":Int:54"]
