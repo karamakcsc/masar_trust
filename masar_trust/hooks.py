@@ -108,7 +108,8 @@ doctype_js = {
     "Purchase Invoice" : "custom/purchase_invoice/purchase_invoice.js",
     "Journal Entry" : "custom/journal_entry/journal_entry.js",
     "POS Invoice" : "custom/pos_invoice/pos_invoice.js",
-    "Payment Entry" : "custom/payment_entry/payment_entry.js"
+    "Payment Entry" : "custom/payment_entry/payment_entry.js",
+    "Stock Entry" : "custom/stock_entry/stock_entry.js"
 }
 # Scheduled Tasks
 # ---------------
@@ -217,7 +218,12 @@ fixtures = [
                   "Delivery Note-cost_center",
                   "Sales Order-branch",
                   "Delivery Note-branch",
-                  "Payment Entry-customer_sub"
+                  "Payment Entry-customer_sub",
+                  "Sales Invoice-section_break_190",
+                  "Sales Invoice-notes",
+                  "Sales Invoice-notes",
+                  "Delivery Note-notes",
+                  "Delivery Note-mode_of_payment"
 
                   ]
         ]
