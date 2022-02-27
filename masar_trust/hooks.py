@@ -223,7 +223,9 @@ fixtures = [
                   "Sales Invoice-notes",
                   "Sales Invoice-notes",
                   "Delivery Note-notes",
-                  "Delivery Note-mode_of_payment"
+                  "Delivery Note-mode_of_payment",
+                  "Sales Invoice-mode_of_payment",
+                  "Sales Invoice-customer_sub"
 
                   ]
         ]
