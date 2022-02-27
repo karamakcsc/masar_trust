@@ -31,8 +31,8 @@ def get_data(filters):
 
 	data = frappe.db.sql(f"""SELECT tpe.name, tpe.payment_type, tpe.party, tpe.mode_of_payment, tpe.customer_sub, tpe.paid_amount, tpe.cost_center
 							FROM `tabPayment Entry` tpe
-							LEFT Join `tabCustomer` tc ON tpe.party_name = tc.name
-							WHERE tc.customer_group != 'Employees' AND (posting_date BETWEEN '{_from}' AND '{to}')
+
+							WHERE tpe.cost_center != 'Amman - TRUST' AND (posting_date BETWEEN '{_from}' AND '{to}')
 							 {conditions};""")
 	return data
 
