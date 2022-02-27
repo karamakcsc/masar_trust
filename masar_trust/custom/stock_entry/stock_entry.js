@@ -1,3 +1,9 @@
+frappe.ui.form.on("Stock Entry",{ before_load:function(frm) {
+ var df=frappe.meta.get_docfield("Stock Entry", "naming_series",frm.doc.name);
+ df.read_only=1;
+frm.refresh_fields();
+}
+});
 frappe.ui.form.on("Stock Entry", {
   from_warehouse: function (frm) {
     if (frm.doc.from_warehouse == "المعرض الرئيسي (الكرادة) - TRUST" && frm.doc.stock_entry_type == "Material Transfer") {
