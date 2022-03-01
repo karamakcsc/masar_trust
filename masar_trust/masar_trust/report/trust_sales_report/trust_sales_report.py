@@ -45,6 +45,6 @@ def get_columns():
 	   "Is Return: Check/Is Return:130",
 	   "Sales Person: Link/Sales Person:150",
 	   "Customer Sub",
-	   "User:150",
-	   "Status:150"
+	   "Status:150",
+	   "User:150"
 	]
