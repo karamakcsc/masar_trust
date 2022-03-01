@@ -96,14 +96,14 @@ frappe.query_reports["Trust Sales Report"] = {
 								"width": 100,
 								"reqd": 0,
 							},
-							{
-								"fieldname": "owner",
-								"label": __("User Name"),
-								"fieldtype": "Link",
-								"options": "Employee",
-								"width": 100,
-								"reqd": 0,
-							},
+							// {
+							// 	"fieldname": "owner",
+							// 	"label": __("User Name"),
+							// 	"fieldtype": "Link",
+							// 	"options": "User",
+							// 	"width": 100,
+							// 	"reqd": 0,
+							// },
 							{
 								"fieldname": "status",
 								"label": __("Status"),
