@@ -95,24 +95,10 @@
 frappe.query_reports["AR-Report"] = {
 	"filters": [
 		{
-			"fieldname":"company",
-			"label": __("Company"),
-			"fieldtype": "Link",
-			"options": "Company",
-			"default": frappe.defaults.get_user_default("Company")
-		},
-		{
 			"fieldname":"report_date",
 			"label": __("Posting Date"),
 			"fieldtype": "Date",
 			"default": frappe.datetime.get_today()
-		},
-		{
-			"fieldname":"ageing_based_on",
-			"label": __("Ageing Based On"),
-			"fieldtype": "Select",
-			"options": 'Posting Date\nDue Date',
-			"default": "Due Date"
 		},
 		{
 			"fieldname":"range1",
@@ -143,12 +129,6 @@ frappe.query_reports["AR-Report"] = {
 			"reqd": 1
 		},
 		{
-			"fieldname":"finance_book",
-			"label": __("Finance Book"),
-			"fieldtype": "Link",
-			"options": "Finance Book"
-		},
-		{
 			"fieldname":"cost_center",
 			"label": __("Cost Center"),
 			"fieldtype": "Link",
@@ -175,18 +155,6 @@ frappe.query_reports["AR-Report"] = {
 			"options": "Customer Group"
 		},
 		{
-			"fieldname":"payment_terms_template",
-			"label": __("Payment Terms Template"),
-			"fieldtype": "Link",
-			"options": "Payment Terms Template"
-		},
-		{
-			"fieldname":"territory",
-			"label": __("Territory"),
-			"fieldtype": "Link",
-			"options": "Territory"
-		},
-		{
 			"fieldname":"sales_partner",
 			"label": __("Sales Partner"),
 			"fieldtype": "Link",
@@ -199,20 +167,11 @@ frappe.query_reports["AR-Report"] = {
 			"options": "Sales Person"
 		},
 		{
-			"fieldname":"based_on_payment_terms",
-			"label": __("Based On Payment Terms"),
-			"fieldtype": "Check",
-		},
-		{
-			"fieldname":"show_future_payments",
-			"label": __("Show Future Payments"),
-			"fieldtype": "Check",
-		},
-		{
-			"fieldname":"show_gl_balance",
-			"label": __("Show GL Balance"),
-			"fieldtype": "Check",
-		},
+			"fieldname":"customer_sub",
+			"label": __("Customer Sub"),
+			"fieldtype": "Link",
+			"options": "Customer Sub"
+		}
 	],
 
 	// onload: function(report) {
