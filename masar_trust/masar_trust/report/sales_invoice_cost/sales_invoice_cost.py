@@ -57,7 +57,7 @@ def get_columns():
 	   "Invoice Cost: Data:200",
 	   "Unit Cost: Data:200",
 	   "Gross Profit Amont: Data:200",
-	   "Gross Profit Percentage: Data:200",
+	   "Gross Profit Percentage: Percent:200",
 	   "Discount Per Unit: Data:200",
 	   "Total Discount: Data:200",
 	   "Additional Discount: Data:200"
