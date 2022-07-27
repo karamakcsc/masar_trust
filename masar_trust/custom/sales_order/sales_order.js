@@ -8,7 +8,7 @@ frappe.ui.form.on("Sales Order","refresh", function(frm) {
      frm.toggle_display("printing_details", false);
      frm.toggle_display("subscription_section", false);
      frm.toggle_display("sales_team_section_break", false);
-     frm.toggle_display("set_warehouse", false);
+     //frm.toggle_display("set_warehouse", false);
      frm.toggle_display("currency_and_price_list", false);
      frm.toggle_display("order_type", false);
      frm.toggle_display("total_net_weighte", false);
