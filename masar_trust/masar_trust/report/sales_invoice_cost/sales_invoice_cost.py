@@ -19,20 +19,23 @@ def get_data(filters):
 	if(filters.get('customer_name')):conditions += f" AND tsi.customer_name LIKE '%{filters.get('customer_name')}' "
 
 	#SQL Query
-	data = frappe.db.sql(f""" Select tsii.parent as `Sales Invoice`, tsi.posting_date as `Posting Date`, tsi.customer_name as `Customer Name`,tsii.item_code as `Item Code` ,tsii.item_name as `Item Name`,tsii.description as `Item Description`, tsii.item_group as `Item Group` ,tdvn.parent as `Delivery Note`,tsii.qty as `QTY`, tsii.rate as `Sales Rate`, tsii.net_rate as `Net Sales Rate Per Unit`,
-IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)) / tsii.qty as `Cost Per Unit`,tsii.amount as `Sales Amount`, tsii.net_amount as `Net Sales Amount`,
-tdvn.stock_value_difference `Cost By Delivery Note` ,tsle.stock_value_difference `Cost By Sales Invoice`,
-IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)) as `Invoiced Cost`,
-(tsii.net_amount + IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference))) as `Gross Profit Amount`,
-Round((tsii.net_amount + IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference))) / tsii.net_amount * 100,3) as `Gross Profit Percentage`, tsii.discount_amount as `Discount Per Unit`,
-(tsii.discount_amount * tsii.qty) as `Total Discount Amount`,(tsii.amount - tsii.net_amount) as `Additional Discount Amount`
-From `tabSales Invoice Item` tsii
-left JOIN `tabSales Invoice` tsi on  tsii.parent = tsi.name
-Left Join `tabStock Ledger Entry` tsle on tsii.name = tsle.voucher_detail_no and tsii.parent = tsle.voucher_no
-left join (select tdni.parent,tdni.name,(tsle2.stock_value_difference / tsle2.actual_qty) as UnitCost,tsle2.stock_value_difference
-		   from `tabDelivery Note Item` tdni
-		   inner join `tabStock Ledger Entry` tsle2 on tdni.name = tsle2.voucher_detail_no and tdni.parent = tsle2.voucher_no) as tdvn on tsii.delivery_note =tdvn.parent and tsii.dn_detail = tdvn.name
-Where tsii.docstatus =1 AND
+	data = frappe.db.sql(f""" Select tsii.parent as `Sales Invoice`, tsi.posting_date as `Posting Date`, tsi.customer_name as `Customer Name`,tsii.item_code as `Item Code` ,tsii.item_name as `Item Name`,
+								tsii.description as `Item Description`, tsii.item_group as `Item Group` ,tdvn.parent as `Delivery Note`,tsii.qty as `Invoice QTY`,tdvn.qty as `Delivery Note QTY`, tsii.rate as `Sales Rate`, tsii.net_rate as `Net Sales Rate Per Unit`,
+								IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference /tsle.actual_qty ,tdvn.stock_value_difference/tdvn.qty)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference/tsle.actual_qty ,
+								tdvn.stock_value_difference/tdvn.qty))  as `Cost Per Unit`,
+								tsii.amount as `Sales Amount`, tsii.net_amount as `Net Sales Amount`,tdvn.stock_value_difference  `Cost By Delivery Note` ,tsle.stock_value_difference `Cost By Sales Invoice`,
+								IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference /tsle.actual_qty ,tdvn.stock_value_difference/tdvn.qty)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference/tsle.actual_qty ,
+								tdvn.stock_value_difference/tdvn.qty)) * tsii.qty as `Invoiced Cost`,(tsii.net_amount + IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,
+								tsle.stock_value_difference,tdvn.stock_value_difference))) as `Gross Profit Amount`,
+								Round((tsii.net_amount + IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference))) / tsii.net_amount * 100,3) as `Gross Profit Percentage`,
+								tsii.discount_amount as `Discount Per Unit`,(tsii.discount_amount * tsii.qty) as `Total Discount Amount`,(tsii.amount - tsii.net_amount) as `Additional Discount Amount`
+								From `tabSales Invoice Item` tsii
+								left JOIN `tabSales Invoice` tsi on  tsii.parent = tsi.name
+								Left Join `tabStock Ledger Entry` tsle on tsii.name = tsle.voucher_detail_no and tsii.parent = tsle.voucher_no
+								left join (select tdni.parent,tdni.name,(tsle2.stock_value_difference / tsle2.actual_qty) as UnitCost,tsle2.stock_value_difference,qty
+		   						from `tabDelivery Note Item` tdni
+		   						inner join `tabStock Ledger Entry` tsle2 on tdni.name = tsle2.voucher_detail_no and tdni.parent = tsle2.voucher_no) as tdvn on tsii.delivery_note =tdvn.parent and tsii.dn_detail = tdvn.name
+								Where tsii.docstatus =1 AND
 							(tsi.posting_date BETWEEN '{_from}' AND '{to}')
 							 {conditions};""")
 	return data
@@ -47,7 +50,8 @@ def get_columns():
 	   "Item Description: Data:200",
 	   "Item Group: Data:200",
 	   "Delivery Note: Link/Delivery Note:200",
-	   "QTY: Data:150",
+	   "Invoice QTY: Data:150",
+	   "Delivery Note QTY: Data:150",
 	   "Sales Rate: Data:200",
 	   "Net Sales Rate Per Unit: Data:200",
 	   "Cost Per Unit: Data:200",

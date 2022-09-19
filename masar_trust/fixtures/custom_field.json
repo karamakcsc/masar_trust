@@ -87,7 +87,7 @@
   "name": "Item-item_model",
   "no_copy": 0,
   "non_negative": 0,
-  "options": "\nj Smart\nHalo\nUnique\nDiamond\nFreedom\nAPA\nAPA-Crown\nAPA-DF\nAPA-DC\nCassette\nDuct\nHalo Ampere Control\n",
+  "options": "\nj Smart\nHalo\nUnique\nDiamond\nFreedom\nAPA\nAPA-Crown\nAPA-DF\nAPA-DC\nCassette\nDuct\nHalo Ampere Control\nFull Loaded",
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -319,7 +319,7 @@
  },
  {
   "allow_in_quick_entry": 0,
-  "allow_on_submit": 0,
+  "allow_on_submit": 1,
   "bold": 1,
   "collapsible": 0,
   "collapsible_depends_on": null,
@@ -3128,7 +3128,7 @@
  },
  {
   "allow_in_quick_entry": 0,
-  "allow_on_submit": 0,
+  "allow_on_submit": 1,
   "bold": 1,
   "collapsible": 0,
   "collapsible_depends_on": null,
