@@ -23,7 +23,7 @@ def get_data(filters):
 								tsii.description as `Item Description`, tsii.item_group as `Item Group` ,tdvn.parent as `Delivery Note`,tsii.qty as `Invoice QTY`,tdvn.qty as `Delivery Note QTY`, tsii.rate as `Sales Rate`, tsii.net_rate as `Net Sales Rate Per Unit`,
 								IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference /tsle.actual_qty ,tdvn.stock_value_difference/tdvn.qty)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference/tsle.actual_qty ,
 								tdvn.stock_value_difference/tdvn.qty))  as `Cost Per Unit`,
-								tsii.amount as `Sales Amount`, tsii.net_amount as `Net Sales Amount`,tdvn.stock_value_difference  `Cost By Delivery Note` ,tsle.stock_value_difference `Cost By Sales Invoice`,
+								tsii.amount as `Sales Amount`, tsii.net_amount as `Net Sales Amount`,tdvn.stock_value_difference `Cost By Delivery Note` ,tsle.stock_value_difference `Cost By Sales Invoice`,
 								IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference /tsle.actual_qty ,tdvn.stock_value_difference/tdvn.qty)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference/tsle.actual_qty ,
 								tdvn.stock_value_difference/tdvn.qty)) * tsii.qty as `Invoiced Cost`,(tsii.net_amount + IF(IF(tdvn.stock_value_difference IS NULL,tsle.stock_value_difference,tdvn.stock_value_difference)IS NULL,0,IF(tdvn.stock_value_difference IS NULL,
 								tsle.stock_value_difference,tdvn.stock_value_difference))) as `Gross Profit Amount`,
