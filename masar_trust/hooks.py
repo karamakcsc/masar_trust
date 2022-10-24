@@ -225,7 +225,11 @@ fixtures = [
                   "Delivery Note-notes",
                   "Delivery Note-mode_of_payment",
                   "Sales Invoice-mode_of_payment",
-                  "Sales Invoice-customer_sub"
+                  "Sales Invoice-customer_sub",
+                  "Sales Invoice Item-unit_price_before_discount",
+                  "Sales Invoice Item-amount_before_discount",
+                  "Sales Invoice Item-total_discount_amount",
+                  "Sales Invoice-total_items_discount"
 
                   ]
         ]

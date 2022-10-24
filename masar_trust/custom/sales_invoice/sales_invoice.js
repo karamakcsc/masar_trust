@@ -15,13 +15,6 @@ frappe.ui.form.on("Sales Invoice","refresh", function(frm) {
      frm.toggle_display("more_information", false);
 });
 
-// frappe.ui.form.on("Sales Invoice",{ before_load:function(frm) {
-//  var df=frappe.meta.get_docfield("Sales Invoice", "naming_series",frm.doc.name);
-//  df.read_only=1;
-// frm.refresh_fields();
-// }
-// });
-
 frappe.ui.form.on("Sales Invoice", {
   branch: function (frm) {
     if (frm.doc.branch == "المعرض الرئيسي (الكرادة)") {
@@ -45,4 +38,34 @@ frappe.ui.form.on("Sales Invoice", {
      }
     refresh_field("naming_series");
   }
+});
+
+
+
+
+frappe.ui.form.on("Sales Invoice Item", {
+	rate: function(frm,cdt, cdn){
+		calculate_total(frm, cdt, cdn);
+	},
+	discount_amount: function(frm, cdt, cdn){
+		calculate_total(frm, cdt, cdn);
+	}
+});
+  var calculate_total = function(frm, cdt, cdn) {
+	var child = locals[cdt][cdn];
+	frappe.model.set_value(cdt, cdn, "unit_price_before_discount", child.rate + child.discount_amount);
+  frappe.model.set_value(cdt, cdn, "amount_before_discount", child.unit_price_before_discount * child.qty);
+  frappe.model.set_value(cdt, cdn, "total_discount_amount", child.discount_amount * child.qty);
+}
+
+frappe.ui.form.on("Sales Invoice Item", {
+ discount_amount: function(frm, cdt, cdn) {
+   var d = locals[cdt][cdn];
+   var total = 0;
+frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
+frm.doc.items.forEach(function(d) { total += d.discount_amount; });
+       frm.set_value('total_items_discount', total);
+       frappe.msgprint(total)
+ }
+
 });
