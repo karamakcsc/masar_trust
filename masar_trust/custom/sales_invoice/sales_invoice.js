@@ -65,7 +65,6 @@ frappe.ui.form.on("Sales Invoice Item", {
 frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
 frm.doc.items.forEach(function(d) { total += d.discount_amount; });
        frm.set_value('total_items_discount', total);
-       frappe.msgprint(total)
  }
 
 });
