@@ -230,7 +230,17 @@ fixtures = [
                   "Sales Invoice Item-amount_before_discount",
                   "Sales Invoice Item-total_discount_amount",
                   "Sales Invoice-total_items_discount",
-                  "Sales Invoice-total_amount_before_discount"
+                  "Sales Invoice-total_amount_before_discount",
+                  "Delivery Note-total_items_discount",
+                  "Delivery Note Item-amount_before_discount",
+                  "Delivery Note Item-total_discount_amount",
+                  "Delivery Note Item-unit_price_before_discount",
+                  "Delivery Note-total_amount_before_discount",
+                  "Sales Order-total_items_discount",
+                  "Sales Order-total_amount_before_discount",
+                  "Sales Order Item-unit_price_before_discount",
+                  "Sales Order Item-amount_before_discount",
+                  "Sales Order Item-total_discount_amount"
 
                   ]
         ]

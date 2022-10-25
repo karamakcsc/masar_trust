@@ -60,3 +60,38 @@ refresh: function(frm) {
 frm.doc.project = frm.doc.project_code;
 }
 });
+
+frappe.ui.form.on("Sales Order Item", {
+    rate: function(frm,cdt, cdn){
+    calculate_total(frm, cdt, cdn);
+    },
+    discount_amount: function(frm, cdt, cdn){
+    calculate_total(frm, cdt, cdn);
+  }
+});
+  var calculate_total = function(frm, cdt, cdn) {
+  var child = locals[cdt][cdn];
+  frappe.model.set_value(cdt, cdn, "unit_price_before_discount", child.rate + child.discount_amount);
+  frappe.model.set_value(cdt, cdn, "amount_before_discount", child.unit_price_before_discount * child.qty);
+  frappe.model.set_value(cdt, cdn, "total_discount_amount", child.discount_amount * child.qty);
+}
+
+frappe.ui.form.on("Sales Order Item", {
+    total_discount_amount: function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+    var total = 0;
+    frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
+    frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+    frm.set_value('total_items_discount', total);
+  }
+});
+
+frappe.ui.form.on("Sales Order Item", {
+    amount_before_discount: function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+    var total = 0;
+    frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
+    frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+    frm.set_value('total_amount_before_discount', total);
+  }
+});
