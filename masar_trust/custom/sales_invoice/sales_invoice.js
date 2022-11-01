@@ -97,7 +97,7 @@ frappe.ui.form.on("Sales Invoice",{
 					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
 					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
 				})
-				frm.refresh_field('items');
+				frm.refresh_field('total_amount_before_discount');
 			}
 		})
 	}
@@ -117,7 +117,7 @@ frappe.ui.form.on("Sales Invoice",{
 					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
 					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
 				})
-				frm.refresh_field('items');
+				frm.refresh_field('total_discount_amount');
 			}
 		})
 	}
