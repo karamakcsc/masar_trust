@@ -58,70 +58,70 @@ frappe.ui.form.on("Sales Invoice Item", {
   frappe.model.set_value(cdt, cdn, "total_discount_amount", child.discount_amount * child.qty);
 }
 
-// frappe.ui.form.on("Sales Invoice Item", {
-//  total_discount_amount: function(frm, cdt, cdn) {
-//    var d = locals[cdt][cdn];
-//    var total = 0;
-// frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
-// frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
-//        frm.set_value('total_items_discount', total);
-//        refresh_field("total_items_discount");
-//  }
-//
-// });
-//
-// frappe.ui.form.on("Sales Invoice Item", {
-//  amount_before_discount: function(frm, cdt, cdn) {
-//    var d = locals[cdt][cdn];
-//    var total = 0;
-// frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
-// frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-//        frm.set_value('total_amount_before_discount', total);
-//        refresh_field("total_amount_before_discount");
-//  }
-//
-// });
+frappe.ui.form.on("Sales Invoice Item", {
+ discount_amount: function(frm, cdt, cdn) {
+   var d = locals[cdt][cdn];
+   var total = 0;
+frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
+frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+       frm.set_value('total_items_discount', total);
+       refresh_field("total_items_discount");
+ }
+
+});
+
+frappe.ui.form.on("Sales Invoice Item", {
+ discount_amount: function(frm, cdt, cdn) {
+   var d = locals[cdt][cdn];
+   var total = 0;
+frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
+frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+       frm.set_value('total_amount_before_discount', total);
+       refresh_field("total_amount_before_discount");
+ }
+
+});
 
 
-frappe.ui.form.on("Sales Invoice",{
-	discount_amount: function(frm) {
-		frappe.call({
-			method: "frappe.client.get",
-			args: {
-				doctype: "Sales Invoice Item",
-				filters: {"parent":name}    //user is current user here
-			},
-			callback: function(r) {
-				$.each(frm.doc.items || [], function(i, v) {
-					frappe.model.set_value(v.doctype, v.name, "total_amount_before_discount", r.amount_before_discount)
-					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
-					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
-				})
-				frm.refresh_field('total_amount_before_discount');
-			}
-		})
-	}
-})
-
-frappe.ui.form.on("Sales Invoice",{
-	discount_amount: function(frm) {
-		frappe.call({
-			method: "frappe.client.get",
-			args: {
-				doctype: "Sales Invoice Item",
-				filters: {"parent":name}    //user is current user here
-			},
-			callback: function(r) {
-				$.each(frm.doc.items || [], function(i, v) {
-					frappe.model.set_value(v.doctype, v.name, "total_items_discount", r.total_discount_amount)
-					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
-					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
-				})
-				frm.refresh_field('total_discount_amount');
-			}
-		})
-	}
-})
+// frappe.ui.form.on("Sales Invoice",{
+// 	discount_amount: function(frm) {
+// 		frappe.call({
+// 			method: "frappe.client.get",
+// 			args: {
+// 				doctype: "Sales Invoice Item",
+// 				filters: {"parent":name}    //user is current user here
+// 			},
+// 			callback: function(r) {
+//         frm.doc.items.forEach(function(r) { total += r.amount_before_discount; });
+//         frm.set_value('total_amount_before_discount', total);
+// 					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
+// 					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
+// 				})
+// 				frm.refresh_field('total_amount_before_discount');
+// 			}
+// 		})
+// 	}
+// })
+//
+// frappe.ui.form.on("Sales Invoice",{
+// 	discount_amount: function(frm) {
+// 		frappe.call({
+// 			method: "frappe.client.get",
+// 			args: {
+// 				doctype: "Sales Invoice Item",
+// 				filters: {"parent":name}    //user is current user here
+// 			},
+// 			callback: function(r) {
+// 				$.each(frm.doc.items || [], function(i, v) {
+// 					frappe.model.set_value(v.doctype, v.name, "total_items_discount", r.total_discount_amount)
+// 					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
+// 					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
+// 				})
+// 				frm.refresh_field('total_discount_amount');
+// 			}
+// 		})
+// 	}
+// })
 
 
 
