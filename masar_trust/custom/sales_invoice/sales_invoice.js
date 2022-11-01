@@ -63,19 +63,20 @@ frappe.ui.form.on("Sales Invoice Item", {
    var d = locals[cdt][cdn];
    var total = 0;
 frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
-frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+frm.doc.items.forEach(function(d) { total += (d.discount_amount * d.qty) });
        frm.set_value('total_items_discount', total);
        refresh_field("total_items_discount");
+        refresh_field("d.total_items_discount");
  }
 
 });
 
 frappe.ui.form.on("Sales Invoice Item", {
- discount_amount: function(frm, cdt, cdn) {
+ refresh: function(frm, cdt, cdn) {
    var d = locals[cdt][cdn];
    var total = 0;
 frappe.model.set_value(d.doctype, d.name, "total_amount_before_discount", d.total_amount_before_discount);
-frm.doc.items.forEach(function(d) {d.amount_before_discount; });
+frm.doc.items.forEach(function(d) { total += (d.unit_price_before_discount * d.qty)});
        frm.set_value('total_amount_before_discount', total);
        refresh_field("total_amount_before_discount");
  }
