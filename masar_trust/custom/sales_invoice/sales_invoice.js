@@ -84,7 +84,7 @@ frappe.ui.form.on("Sales Invoice Item", {
 
 
 frappe.ui.form.on("Sales Invoice",{
-	verify: function(frm) {
+	refresh: function(frm) {
 		frappe.call({
 			method: "frappe.client.get",
 			args: {
@@ -104,7 +104,7 @@ frappe.ui.form.on("Sales Invoice",{
 })
 
 frappe.ui.form.on("Sales Invoice",{
-	verify: function(frm) {
+	refresh: function(frm) {
 		frappe.call({
 			method: "frappe.client.get",
 			args: {
