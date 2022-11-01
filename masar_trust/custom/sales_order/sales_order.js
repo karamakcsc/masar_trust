@@ -91,7 +91,7 @@ frappe.ui.form.on("Sales Order Item", {
     discount_amount: function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
     var total = 0;
-    frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
+    frappe.model.set_value(d.doctype, d.name, "total_amount_before_discount", d.total_amount_before_discount);
     frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
     frm.set_value('total_amount_before_discount', total);
     refresh_field("total_amount_before_discount");
