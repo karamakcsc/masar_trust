@@ -61,82 +61,112 @@ frm.doc.project = frm.doc.project_code;
 }
 });
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+frappe.ui.form.on("Sales Order Item", "qty", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+       if (d.item_code)  {
+         d.total_discount_amount = flt(d.discount_amount * d.qty)
+       }
+});
+frappe.ui.form.on("Sales Order Item", "discount_amount", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+      if (d.item_code)  {
+        d.total_discount_amount = flt(d.discount_amount * d.qty)
+      }
+});
+
+frappe.ui.form.on("Sales Order Item", "qty", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+       if (d.item_code)  {
+         d.unit_price_before_discount = flt(d.rate + d.discount_amount)
+       }
+});
+frappe.ui.form.on("Sales Order Item", "discount_amount", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+      if (d.item_code)  {
+        d.unit_price_before_discount = flt(d.rate + d.discount_amount)
+      }
+});
+
+frappe.ui.form.on("Sales Order Item", "qty", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+       if (d.item_code)  {
+         d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
+       }
+});
+frappe.ui.form.on("Sales Order Item", "discount_amount", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+      if (d.item_code)  {
+        d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
+      }
+});
+
+//////////////////////////////////////////////////////////
 frappe.ui.form.on("Sales Order Item", {
-    rate: function(frm,cdt, cdn){
-    calculate_total(frm, cdt, cdn);
+   discount_amount:function(frm, cdt, cdn){
+   var d = locals[cdt][cdn];
+   var total = 0;
+   frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+   frm.set_value("total_items_discount", total);
+   refresh_field("total_items_discount");
+ },
+   items_remove:function(frm, cdt, cdn){
+   var d = locals[cdt][cdn];
+   var total = 0;
+   frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+   frm.set_value("total_items_discount", total);
+   refresh_field("total_items_discount");
+   	}
+   });
+
+   frappe.ui.form.on("Sales Order Item", {
+      qty:function(frm, cdt, cdn){
+      var d = locals[cdt][cdn];
+      var total = 0;
+      frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+      frm.set_value("total_items_discount", total);
+      refresh_field("total_items_discount");
     },
-    discount_amount: function(frm, cdt, cdn){
-    calculate_total(frm, cdt, cdn);
-  }
-});
-  var calculate_total = function(frm, cdt, cdn) {
-  var child = locals[cdt][cdn];
-  frappe.model.set_value(cdt, cdn, "unit_price_before_discount", child.rate + child.discount_amount);
-  frappe.model.set_value(cdt, cdn, "amount_before_discount", child.unit_price_before_discount * child.qty);
-  frappe.model.set_value(cdt, cdn, "total_discount_amount", child.discount_amount * child.qty);
-}
+      items_remove:function(frm, cdt, cdn){
+      var d = locals[cdt][cdn];
+      var total = 0;
+      frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+      frm.set_value("total_items_discount", total);
+      refresh_field("total_items_discount");
+      	}
+      });
+//////////////////////////
+      frappe.ui.form.on("Sales Order Item", {
+         discount_amount:function(frm, cdt, cdn){
+         var d = locals[cdt][cdn];
+         var total = 0;
+         frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+         frm.set_value("total_amount_before_discount", total);
+         refresh_field("total_amount_before_discount");
+       },
+         items_remove:function(frm, cdt, cdn){
+         var d = locals[cdt][cdn];
+         var total = 0;
+         frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+         frm.set_value("total_amount_before_discount", total);
+         refresh_field("total_amount_before_discount");
+         	}
+         });
 
-frappe.ui.form.on("Sales Order Item", {
-    discount_amount: function(frm, cdt, cdn) {
-    var d = locals[cdt][cdn];
-    var total = 0;
-    frappe.model.set_value(d.doctype, d.name, "total_items_discount", d.total_items_discount);
-    frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
-    frm.set_value('total_items_discount', total);
-    refresh_field("total_items_discount");
-  }
-});
-
-frappe.ui.form.on("Sales Order Item", {
-    discount_amount: function(frm, cdt, cdn) {
-    var d = locals[cdt][cdn];
-    var total = 0;
-    frappe.model.set_value(d.doctype, d.name, "total_amount_before_discount", d.total_amount_before_discount);
-    frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-    frm.set_value('total_amount_before_discount', total);
-    refresh_field("total_amount_before_discount");
-  }
-});
-
-
-
-// frappe.ui.form.on("Sales Order",{
-// 	verify: function(frm) {
-// 		frappe.call({
-// 			method: "frappe.client.get",
-// 			args: {
-// 				doctype: "Sales Order Item",
-// 				filters: {"parent":name}    //user is current user here
-// 			},
-// 			callback: function(r) {
-// 				$.each(frm.doc.items || [], function(i, v) {
-// 					frappe.model.set_value(v.doctype, v.name, "total_amount_before_discount", r.amount_before_discount)
-// 					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
-// 					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
-// 				})
-// 				frm.refresh_field('items');
-// 			}
-// 		})
-// 	}
-// })
-//
-//
-// frappe.ui.form.on("Sales Order",{
-// 	verify: function(frm) {
-// 		frappe.call({
-// 			method: "frappe.client.get",
-// 			args: {
-// 				doctype: "Sales Order Item",
-// 				filters: {"parent":name}    //user is current user here
-// 			},
-// 			callback: function(r) {
-// 				$.each(frm.doc.items || [], function(i, v) {
-// 					frappe.model.set_value(v.doctype, v.name, "total_items_discount", r.total_discount_amount)
-// 					// frappe.model.set_value(v.doctype, v.name, "email", r.message.email)
-// 					// frappe.model.set_value(v.doctype, v.name, "phone", r.message.phone)
-// 				})
-// 				frm.refresh_field('items');
-// 			}
-// 		})
-// 	}
-// })
+         frappe.ui.form.on("Sales Order Item", {
+            qty:function(frm, cdt, cdn){
+            var d = locals[cdt][cdn];
+            var total = 0;
+            frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+            frm.set_value("total_amount_before_discount", total);
+            refresh_field("total_amount_before_discount");
+          },
+            items_remove:function(frm, cdt, cdn){
+            var d = locals[cdt][cdn];
+            var total = 0;
+            frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+            frm.set_value("total_amount_before_discount", total);
+            refresh_field("total_amount_before_discount");
+            	}
+            });
+////////////////////////////////////////////////////////////////////////////////////
