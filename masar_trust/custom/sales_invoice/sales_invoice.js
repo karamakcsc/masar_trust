@@ -74,14 +74,14 @@ frappe.ui.form.on("Sales Invoice Item", "discount_amount", function(frm, cdt, cd
 frappe.ui.form.on("Sales Invoice Item", "rate", function(frm, cdt, cdn) {
 		  var d = locals[cdt][cdn];
        if (d.item_code)  {
-         d.amount_before_discount = flt(d.unit_price_before_discount + d.qty)
+         d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
          cur_frm.refresh_field();
        }
 });
 frappe.ui.form.on("Sales Invoice Item", "discount_amount", function(frm, cdt, cdn) {
 		  var d = locals[cdt][cdn];
       if (d.item_code)  {
-        d.amount_before_discount = flt(d.unit_price_before_discount + d.qty)
+        d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
         cur_frm.refresh_field();
       }
 });
