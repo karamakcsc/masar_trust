@@ -76,34 +76,36 @@ frappe.ui.form.on("Sales Order Item", "discount_amount", function(frm, cdt, cdn)
         cur_frm.refresh_field();
       }
 });
-
-frappe.ui.form.on("Sales Order Item", {
-	rate: function(frm,cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	},
-	discount_amount: function(frm, cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	}
+//////////////////////////////////////////////////////////////////////////////////
+frappe.ui.form.on("Sales Order Item", "rate", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+       if (d.item_code)  {
+         d.unit_price_before_discount = flt(d.discount_amount + d.rate)
+         cur_frm.refresh_field();
+       }
 });
-  var calculate_total = function(frm, cdt, cdn) {
-	var child = locals[cdt][cdn];
-	frappe.model.set_value(cdt, cdn, "unit_price_before_discount", child.rate + child.discount_amount);
-}
-cur_frm.refresh_field();
-//
-frappe.ui.form.on("Sales Order Item", {
-	qty: function(frm,cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	},
-	discount_amount: function(frm, cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	}
+frappe.ui.form.on("Sales Order Item", "discount_amount", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+      if (d.item_code)  {
+         d.unit_price_before_discount = flt(d.discount_amount + d.rate)
+        cur_frm.refresh_field();
+      }
 });
-  var calculate_total = function(frm, cdt, cdn) {
-	var child = locals[cdt][cdn];
-	frappe.model.set_value(cdt, cdn, "amount_before_discount", child.unit_price_before_discount * child.qty);
-}
-cur_frm.refresh_field();
+///////////////////////////////////////////////////////////////////////////////
+frappe.ui.form.on("Sales Order Item", "rate", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+       if (d.item_code)  {
+         d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
+         cur_frm.refresh_field();
+       }
+});
+frappe.ui.form.on("Sales Order Item", "discount_amount", function(frm, cdt, cdn) {
+		  var d = locals[cdt][cdn];
+      if (d.item_code)  {
+        d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
+        cur_frm.refresh_field();
+      }
+});
 //////////////////////////////////////////////////////////
 frappe.ui.form.on("Sales Order Item", {
    discount_amount:function(frm, cdt, cdn){

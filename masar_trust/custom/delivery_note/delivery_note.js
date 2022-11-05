@@ -108,50 +108,91 @@ frappe.ui.form.on("Delivery Note", {
   }
 });
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-frappe.ui.form.on("Delivery Note Item", "qty", function(frm, cdt, cdn) {
+///////////////////////////////////////////////////////////////////////////////
+frappe.ui.form.on("Delivery Note Item", "rate", function(frm, cdt, cdn) {
 		  var d = locals[cdt][cdn];
        if (d.item_code)  {
-         d.total_discount_amount = flt(d.discount_amount * d.qty)
+         d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
          cur_frm.refresh_field();
        }
 });
 frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cdn) {
 		  var d = locals[cdt][cdn];
       if (d.item_code)  {
-        d.total_discount_amount = flt(d.discount_amount * d.qty)
+        d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
         cur_frm.refresh_field();
       }
 });
+//////////////////////////////////////////////////////////
+frappe.ui.form.on("Delivery Note Item", {
+   discount_amount:function(frm, cdt, cdn){
+       var d = locals[cdt][cdn];
+       var total = 0;
+       frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+       frm.set_value("total_items_discount", total);
+       refresh_field("total_items_discount");
+   },
+     items_remove:function(frm, cdt, cdn){
+       var d = locals[cdt][cdn];
+       var total = 0;
+       frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+       frm.set_value("total_items_discount", total);
+       refresh_field("total_items_discount");
+ 	 }
+});
 
 frappe.ui.form.on("Delivery Note Item", {
-	rate: function(frm,cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	},
-	discount_amount: function(frm, cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	}
+    qty:function(frm, cdt, cdn){
+    var d = locals[cdt][cdn];
+    var total = 0;
+    frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+    frm.set_value("total_items_discount", total);
+    refresh_field("total_items_discount");
+  },
+      items_remove:function(frm, cdt, cdn){
+        var d = locals[cdt][cdn];
+        var total = 0;
+        frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
+        frm.set_value("total_items_discount", total);
+        refresh_field("total_items_discount");
+  	}
 });
-  var calculate_total = function(frm, cdt, cdn) {
-	var child = locals[cdt][cdn];
-	frappe.model.set_value(cdt, cdn, "unit_price_before_discount", child.rate + child.discount_amount);
-}
-cur_frm.refresh_field();
-//
+// //////////////////////////
 frappe.ui.form.on("Delivery Note Item", {
-	qty: function(frm,cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	},
-	discount_amount: function(frm, cdt, cdn){
-		calculate_total(frm, cdt, cdn);
-	}
+     discount_amount:function(frm, cdt, cdn){
+       var d = locals[cdt][cdn];
+       var total = 0;
+       frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+       frm.set_value("total_amount_before_discount", total);
+       refresh_field("total_amount_before_discount");
+     },
+     items_remove:function(frm, cdt, cdn){
+       var d = locals[cdt][cdn];
+       var total = 0;
+       frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+       frm.set_value("total_amount_before_discount", total);
+       refresh_field("total_amount_before_discount");
+   	 }
 });
-  var calculate_total = function(frm, cdt, cdn) {
-	var child = locals[cdt][cdn];
-	frappe.model.set_value(cdt, cdn, "amount_before_discount", child.unit_price_before_discount * child.qty);
-}
-cur_frm.refresh_field();
-//////////////////////////////////////////////////////////
+
+frappe.ui.form.on("Delivery Note Item", {
+      qty:function(frm, cdt, cdn){
+          var d = locals[cdt][cdn];
+          var total = 0;
+          frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+          frm.set_value("total_amount_before_discount", total);
+          refresh_field("total_amount_before_discount");
+      },
+      items_remove:function(frm, cdt, cdn){
+          var d = locals[cdt][cdn];
+          var total = 0;
+          frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+          frm.set_value("total_amount_before_discount", total);
+          refresh_field("total_amount_before_discount");
+    	}
+});
+////////////////////////////////////////////////////////////////////////////////////
+
 frappe.ui.form.on("Delivery Note Item", {
    discount_amount:function(frm, cdt, cdn){
    var d = locals[cdt][cdn];
