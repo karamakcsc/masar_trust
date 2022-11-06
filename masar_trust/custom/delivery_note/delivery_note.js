@@ -227,16 +227,16 @@ frappe.ui.form.on("Delivery Note Item", {
   	}
   });
 // ////////////////////////////////////////////////////////
-frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cdn){
-  var d = locals[cdt][cdn];
-  frappe.model.set_value(d.doctype, d.name, "discount_amount", d.amount_before_discount);
-
-  var total = 0;
-  frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-
-  frm.set_value('total_amount_before_discount', total);
-
-});
+// frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cdn){
+//   var d = locals[cdt][cdn];
+//   frappe.model.set_value(d.doctype, d.name, "discount_amount", d.amount_before_discount);
+//
+//   var total = 0;
+//   frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+//
+//   frm.set_value('total_amount_before_discount', total);
+//
+// });
 
 
 
