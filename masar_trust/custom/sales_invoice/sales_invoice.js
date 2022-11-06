@@ -87,34 +87,7 @@ frappe.ui.form.on("Sales Invoice Item", "discount_amount", function(frm, cdt, cd
 });
 
 //////////////////////////////////////////////////////////////////////////////////
-// frappe.ui.form.on("Sales Invoice Item", {
-// 	rate: function(frm,cdt, cdn){
-// 		calculate_total(frm, cdt, cdn);
-// 	},
-// 	discount_amount: function(frm, cdt, cdn){
-// 		calculate_total(frm, cdt, cdn);
-// 	}
-// });
-//   var calculate_total = function(frm, cdt, cdn) {
-// 	var d = locals[cdt][cdn];
-// 	frappe.model.set_value(cdt, cdn, "unit_price_before_discount", d.rate + d.discount_amount);
-// }
-// cur_frm.refresh_field();
-// //
-// frappe.ui.form.on("Sales Invoice Item", {
-// 	qty: function(frm,cdt, cdn){
-// 		calculate_total(frm, cdt, cdn);
-// 	},
-// 	discount_amount: function(frm, cdt, cdn){
-// 		calculate_total(frm, cdt, cdn);
-// 	}
-// });
-//   var calculate_total = function(frm, cdt, cdn) {
-// 	var d = locals[cdt][cdn];
-// 	frappe.model.set_value(cdt, cdn, "amount_before_discount", d.unit_price_before_discount * d.qty);
-// }
-// cur_frm.refresh_field();
-//////////////////////////////////////////////////////////
+
 frappe.ui.form.on("Sales Invoice Item", {
    discount_amount:function(frm, cdt, cdn){
    var d = locals[cdt][cdn];
@@ -148,40 +121,53 @@ frappe.ui.form.on("Sales Invoice Item", {
       refresh_field("total_items_discount");
       	}
       });
-// //////////////////////////
-      frappe.ui.form.on("Sales Invoice Item", {
-         discount_amount:function(frm, cdt, cdn){
-         var d = locals[cdt][cdn];
-         var total = 0;
-         frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-         frm.set_value("total_amount_before_discount", total);
-         refresh_field("total_amount_before_discount");
-       },
-         items_remove:function(frm, cdt, cdn){
-         var d = locals[cdt][cdn];
-         var total = 0;
-         frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-         frm.set_value("total_amount_before_discount", total);
-         refresh_field("total_amount_before_discount");
-         	}
-         });
+////////////////////////////////////////////////////////////////
+frappe.ui.form.on("Sales Invoice Item", "discount_amount", function(frm, cdt, cdn){
+  var d = locals[cdt][cdn];
+  frappe.model.set_value(d.doctype, d.name, "discount_amount", d.amount_before_discount);
 
-         frappe.ui.form.on("Sales Invoice Item", {
-            qty:function(frm, cdt, cdn){
-            var d = locals[cdt][cdn];
-            var total = 0;
-            frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-            frm.set_value("total_amount_before_discount", total);
-            refresh_field("total_amount_before_discount");
-          },
-            items_remove:function(frm, cdt, cdn){
-            var d = locals[cdt][cdn];
-            var total = 0;
-            frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
-            frm.set_value("total_amount_before_discount", total);
-            refresh_field("total_amount_before_discount");
-            	}
-            });
+  var total = 0;
+  frm.doc.items.forEach(function(d) { total += d.amount_before_discount; });
+
+  frm.set_value('total_amount_before_discount', total);
+
+});
+
+//////////////////////******************************///////////////////////////////
+
+// frappe.ui.form.on("Sales Invoice Item", {
+//    discount_amount:function(frm, cdt, cdn){
+//    var d = locals[cdt][cdn];
+//    var total = 0;
+//    frm.doc.items.forEach(function(d) { total += d.amount_before_discount});
+//    frm.set_value("total_amount_before_discount", total);
+//    refresh_field();
+//  },
+//    items_remove:function(frm, cdt, cdn){
+//    var d = locals[cdt][cdn];
+//    var total = 0;
+//    frm.doc.items.forEach(function(d) { total += d.amount_before_discount});
+//    frm.set_value("total_amount_before_discount", total);
+//    refresh_field("total_amount_before_discount");
+//    	}
+// });
+//
+// frappe.ui.form.on("Sales Invoice Item", {
+//   qty:function(frm, cdt, cdn){
+//   var d = locals[cdt][cdn];
+//   var total = 0;
+//   frm.doc.items.forEach(function(d) { total += d.amount_before_discount});
+//   frm.set_value("total_amount_before_discount", total);
+//   refresh_field();
+// },
+//   items_remove:function(frm, cdt, cdn){
+//   var d = locals[cdt][cdn];
+//   var total = 0;
+//   frm.doc.items.forEach(function(d) { total += d.amount_before_discount});
+//   frm.set_value("total_amount_before_discount", total);
+//   refresh_field("total_amount_before_discount");
+//   	}
+// });
 ////////////////////////////////////////////////////////////////////////////////////
 // frappe.ui.form.on("Sales Invoice", "refresh", function(frm) {
 //     frm.add_custom_button(__("Print All Invoices"), function() {
