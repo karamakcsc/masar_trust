@@ -124,37 +124,36 @@ frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cd
       }
 });
 //////////////////////////////////////////////////////////////////////////////////
-frappe.ui.form.on("Delivery Note Item", "rate", function(frm, cdt, cdn) {
-		  var d = locals[cdt][cdn];
-       if (d.item_code)  {
-         d.unit_price_before_discount = flt(d.discount_amount + d.rate)
-         cur_frm.refresh_field();
-       }
-});
-frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cdn) {
-		  var d = locals[cdt][cdn];
-      if (d.item_code)  {
-         d.unit_price_before_discount = flt(d.discount_amount + d.rate)
-        cur_frm.refresh_field();
-      }
-});
+// frappe.ui.form.on("Delivery Note Item", "rate", function(frm, cdt, cdn) {
+// 		  var d = locals[cdt][cdn];
+//        if (d.item_code)  {
+//          d.unit_price_before_discount = flt(d.discount_amount + d.rate)
+//          cur_frm.refresh_field();
+//        }
+// });
+// frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cdn) {
+// 		  var d = locals[cdt][cdn];
+//       if (d.item_code)  {
+//          d.unit_price_before_discount = flt(d.discount_amount + d.rate)
+//         cur_frm.refresh_field();
+//       }
+// });
 ///////////////////////////////////////////////////////////////////////////////
 frappe.ui.form.on("Delivery Note Item", "rate", function(frm, cdt, cdn) {
 		  var d = locals[cdt][cdn];
        if (d.item_code)  {
-         d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
+         d.amount_before_discount = flt(d.price_list_rate * d.qty)
          cur_frm.refresh_field();
        }
 });
 frappe.ui.form.on("Delivery Note Item", "discount_amount", function(frm, cdt, cdn) {
 		  var d = locals[cdt][cdn];
       if (d.item_code)  {
-        d.amount_before_discount = flt(d.unit_price_before_discount * d.qty)
+        d.amount_before_discount = flt(d.price_list_rate * d.qty)
         cur_frm.refresh_field();
       }
 });
-
-//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 frappe.ui.form.on('Delivery Note Item', {
     items_remove: function(frm, cdt, cdn) {
         update_total_items_discount(frm);
@@ -190,7 +189,7 @@ frappe.ui.form.on('Delivery Note Item', {
 function update_total_amount_before_discount(frm) {
     var total = 0;
     frm.doc.items.forEach(function(d) {
-        total += flt(d.price_list_rate * d.qty);
+        total += flt(d.amount_before_discount);
     });
     frm.set_value('total_amount_before_discount', total);
 }
