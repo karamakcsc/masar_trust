@@ -221,7 +221,6 @@ function update_total_items_discount(frm) {
         total += flt(d.total_discount_amount);
     });
     frm.set_value('total_items_discount', total);
-    frappe.refresh_field();
 }
 ////////////////////////////////////////////////////////////////
 frappe.ui.form.on('Sales Order Item', {
@@ -245,6 +244,5 @@ function update_total_amount_before_discount(frm) {
         total += flt(d.amount_before_discount);
     });
     frm.set_value('total_amount_before_discount', total);
-    frappe.refresh_field();
 }
 //////////////////////******************************///////////////////////////////
