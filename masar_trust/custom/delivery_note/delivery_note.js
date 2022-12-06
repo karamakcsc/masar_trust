@@ -3,7 +3,8 @@ frappe.ui.form.on("Delivery Note","refresh", function(frm) {
   frm.toggle_display("customer_po_details", false);
   frm.toggle_display("currency_and_price_list", false);
   frm.toggle_display("taxes_section", false);
-  frm.toggle_display("section_break_49", false);
+  //frm.toggle_display("section_break_49", false);
+  frm.toggle_display("additional_discount_percentage", false);
   //frm.toggle_display("more_info", false);
   frm.toggle_display("printing_details", false);
   frm.toggle_display("subscription_section", false);
@@ -213,39 +214,6 @@ frappe.ui.form.on("Delivery Note Item", "qty", function(frm, cdt, cdn) {
 });
 
 //////////////////////////////////////////////////////////////////////////////////
-// frappe.ui.form.on("Delivery Note Item", {
-//    discount_amount:function(frm, cdt, cdn){
-//    var d = locals[cdt][cdn];
-//    var total = 0;
-//    frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
-//    frm.set_value("total_items_discount", total);
-//    refresh_field("total_items_discount");
-//  },
-//    items_remove:function(frm, cdt, cdn){
-//    var d = locals[cdt][cdn];
-//    var total = 0;
-//    frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
-//    frm.set_value("total_items_discount", total);
-//    refresh_field("total_items_discount");
-//    	}
-//    });
-//
-// frappe.ui.form.on("Delivery Note Item", {
-//   qty:function(frm, cdt, cdn){
-//   var d = locals[cdt][cdn];
-//   var total = 0;
-//   frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
-//   frm.set_value("total_items_discount", total);
-//   refresh_field("total_items_discount");
-// },
-//   items_remove:function(frm, cdt, cdn){
-//   var d = locals[cdt][cdn];
-//   var total = 0;
-//   frm.doc.items.forEach(function(d) { total += d.total_discount_amount; });
-//   frm.set_value("total_items_discount", total);
-//   refresh_field("total_items_discount");
-//   	}
-//   });
 
 frappe.ui.form.on('Delivery Note Item', {
     items_remove: function(frm, cdt, cdn) {
@@ -292,4 +260,42 @@ function update_total_amount_before_discount(frm) {
     });
     frm.set_value('total_amount_before_discount', total);
 }
-//////////////////////******************************///////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// frappe.ui.form.on("Delivery Note", "refresh", function(frm) {
+//     frm.add_custom_button(__("Print All Delivery Note"), function() {
+//         // When this button is clicked, do this
+//         // var myWin = window.open('http://104.131.91.208:8000/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=DN&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         // var myWin = window.open('http://104.131.91.208:8000/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=Delivery%20Note%20Final&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         var myWin = window.open('https://trust.kcsc.com.jo/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=Delivery%20Note%20Final&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         var myWin = window.open('https://trust.kcsc.com.jo/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=DN&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//  }, __("Print Delivery Note"));
+// });
+//
+// frappe.ui.form.on("Delivery Note", "refresh", function(frm) {
+//     frm.add_custom_button(__("Print Customer Delivery Note"), function() {
+//         // When this button is clicked, do this
+//         // var myWin = window.open('http://104.131.91.208:8000/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=DN&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         // var myWin = window.open('http://104.131.91.208:8000/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=Delivery%20Note%20Final&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         var myWin = window.open('https://trust.kcsc.com.jo/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=Delivery%20Note%20Final&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         //var myWin = window.open('https://trust.kcsc.com.jo/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=DN&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//  }, __("Print Delivery Note"));
+// });
+//
+// frappe.ui.form.on("Delivery Note", "refresh", function(frm) {
+//     frm.add_custom_button(__("Print Accounting Delivery Note"), function() {
+//         // When this button is clicked, do this
+//         // var myWin = window.open('http://104.131.91.208:8000/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=DN&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         // var myWin = window.open('http://104.131.91.208:8000/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=Delivery%20Note%20Final&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         //var myWin = window.open('https://trust.kcsc.com.jo/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=Delivery%20Note%20Final&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//         var myWin = window.open('https://trust.kcsc.com.jo/printview?doctype=Delivery%20Note&name='+cur_frm.doc.name+'&trigger_print=1&format=DN&no_letterhead=0&letterhead=Trust%20international&settings=%7B%7D&_lang=ar');
+//  }, __("Print Delivery Note"));
+// });
+//
+// frappe.ui.form.on('Delivery Note', {
+// 	refresh(frm) {
+// 	    // if (frappe.user_roles.indexOf("Sales User") ==-1) {
+// 	        $("button[data-original-title=Print]").hide();
+// 	     // }
+// 	}
+// });
+// ///////////////////////////////////////////////////
