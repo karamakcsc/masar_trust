@@ -109,7 +109,8 @@ doctype_js = {
     "Journal Entry" : "custom/journal_entry/journal_entry.js",
     "POS Invoice" : "custom/pos_invoice/pos_invoice.js",
     "Payment Entry" : "custom/payment_entry/payment_entry.js",
-    "Stock Entry" : "custom/stock_entry/stock_entry.js"
+    "Stock Entry" : "custom/stock_entry/stock_entry.js",
+    "Quotation" : "custom/quotation/quotation.js"
 }
 # Scheduled Tasks
 # ---------------
@@ -240,7 +241,12 @@ fixtures = [
                   "Sales Order-total_amount_before_discount",
                   "Sales Order Item-unit_price_before_discount",
                   "Sales Order Item-amount_before_discount",
-                  "Sales Order Item-total_discount_amount"
+                  "Sales Order Item-total_discount_amount",
+                  "Quotation-total_items_discount",
+                  "Quotation-total_amount_before_discount",
+                  "Quotation Item-unit_price_before_discount",
+                  "Quotation Item-amount_before_discount",
+                  "Quotation Item-total_discount_amount"
 
                   ]
         ]
