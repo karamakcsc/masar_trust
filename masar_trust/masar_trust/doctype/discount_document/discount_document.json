@@ -88,21 +88,19 @@
    "label": "Discount Form"
   },
   {
-   "default": "\u0627\u062d\u0645\u062f \u0639\u0644\u064a",
    "fieldname": "operation_manager",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Operation Manager",
-   "options": "\u0627\u062d\u0645\u062f \u0639\u0644\u064a",
+   "options": "\n\u0627\u062d\u0645\u062f \u0639\u0644\u064a",
    "reqd": 1
   },
   {
-   "default": "\u062d\u064a\u062f\u0631 \u0643\u0627\u0638\u0645",
    "fieldname": "chief_financial_officer",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Chief Financial Officer",
-   "options": "\u062d\u064a\u062f\u0631 \u0643\u0627\u0638\u0645",
+   "options": "\n\u062d\u064a\u062f\u0631 \u0643\u0627\u0638\u0645",
    "reqd": 1
   },
   {
@@ -118,7 +116,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-26 13:12:58.721964",
+ "modified": "2023-02-26 14:37:58.466581",
  "modified_by": "Administrator",
  "module": "Masar Trust",
  "name": "Discount Document",
