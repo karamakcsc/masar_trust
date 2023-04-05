@@ -246,7 +246,9 @@ fixtures = [
                   "Quotation-total_amount_before_discount",
                   "Quotation Item-unit_price_before_discount",
                   "Quotation Item-amount_before_discount",
-                  "Quotation Item-total_discount_amount"
+                  "Quotation Item-total_discount_amount",
+                  "Payment Entry-payment_category",
+                  "Quotation-quotation_total_amount"
 
                   ]
         ]

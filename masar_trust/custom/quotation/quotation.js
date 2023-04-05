@@ -149,3 +149,15 @@ function update_total_amount_before_discount(frm) {
     });
     frm.set_value('total_amount_before_discount', total);
 }
+///////////////////////////////////////////////////////////
+frappe.ui.form.on('Quotation', {
+    quotation_total_amount: function(frm) {
+        var field_value = frm.doc.quotation_total_amount;
+        if (field_value < 1) {
+            frm.set_value('quotation_total_amount', '');
+            frappe.throw(__('The value of Quotation Total Amount must be greater than 1.'));
+        }
+    }
+});
+cur_frm.set_df_property("quotation_total_amount", "reqd", 1);
+////////////////////////////////////////////////////////////
