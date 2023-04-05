@@ -149,7 +149,7 @@ function update_total_amount_before_discount(frm) {
     });
     frm.set_value('total_amount_before_discount', total);
 }
-///////////////////////////////////////////////////////////
+//////////////////mandatory field and reqd/////////////////////////
 frappe.ui.form.on('Quotation', {
     quotation_total_amount: function(frm) {
         var field_value = frm.doc.quotation_total_amount;
@@ -160,4 +160,4 @@ frappe.ui.form.on('Quotation', {
     }
 });
 cur_frm.set_df_property("quotation_total_amount", "reqd", 1);
-////////////////////////////////////////////////////////////
+//////////////////mandatory field and reqd/////////////////////////
