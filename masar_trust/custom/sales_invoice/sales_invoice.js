@@ -292,3 +292,29 @@ function update_total_amount_before_discount(frm) {
 // 	}
 // });
 ///////////////////////////////////////////////////
+
+
+//////////////////from mahmoud //////////////////////
+
+
+
+
+// frappe.ui.form.on("Sales Invoice", {
+//   on_submit: function(frm) {
+//       frappe.call({
+//           method: "masar_trust.custom.sales_invoice.sales_invoice.financial_allocation",
+//           args: {
+//               customer_sub: frm.doc.customer_sub,
+//               date_range: frm.doc.posting_date,
+//               grand_total: frm.doc.grand_total,
+//               cost_center: frm.doc.cost_center
+//           },
+//           callback: function(r) {
+//               if (r.message && r.message.length > 0) {
+//                   frappe.msgprint(r.message);
+//               } 
+//           }
+//       });
+//   }
+// });
+

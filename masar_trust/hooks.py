@@ -252,5 +252,17 @@ fixtures = [
 
                   ]
         ]
-    ]}
+    ]},
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Journal Entry-voucher_type-options"
+                ]
+            ]
+        ]
+    }
 ]
