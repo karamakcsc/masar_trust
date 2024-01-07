@@ -4,7 +4,7 @@
 // frm.refresh_fields();
 // }
 // });
-
+/// Series Selection 
 frappe.ui.form.on("Journal Entry","voucher_type", function(frm) {
 if (frm.doc.voucher_type == "Cash Entry-Baghdad") {
   frm.set_value('naming_series', 'ACC-BC-.YYYY.-')
