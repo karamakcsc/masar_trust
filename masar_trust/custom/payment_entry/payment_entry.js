@@ -32,7 +32,7 @@ else if (frm.doc.mode_of_payment == "Cheque" ){
 ////////////   mahmoud code 
 ////////////// to calculate the Total Allocated Amount from Unallocated Amount 
 frappe.ui.form.on("Payment Entry", {
-  received_amount: function(frm) {
+  base_received_amount: function(frm) {
     frappe.call({
       method: "masar_trust.custom.payment_entry.payment_entry.received_amount_cal",
       args: {
