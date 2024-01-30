@@ -29,3 +29,29 @@ else if (frm.doc.mode_of_payment == "Cheque" ){
   frm.refresh_fields();
 }
 });
+////////////   mahmoud code 
+////////////// to calculate the Total Allocated Amount from Unallocated Amount 
+frappe.ui.form.on("Payment Entry", {
+  received_amount: function(frm) {
+    frappe.call({
+      method: "masar_trust.custom.payment_entry.payment_entry.received_amount_cal",
+      args: {
+        received_amount: frm.doc.received_amount,
+        target_exchange_rate: frm.doc.target_exchange_rate
+      },
+      callback: function(r) {
+        frm.set_value("paid_amount", r.message);
+      }
+    });
+  },
+  after_save: function(frm) {
+    if (frm.doc.paid_amount != frm.doc.unallocated_amount) {
+      frappe.msgprint("Please Check The Received Amount Value. It's Not Correct");
+    }
+  },
+  validate: function(frm) {
+    if (frm.doc.paid_amount != frm.doc.unallocated_amount) {
+      frappe.msgprint("Please Check The Received Amount Value. It's Not Correct");
+    }
+  }
+});
