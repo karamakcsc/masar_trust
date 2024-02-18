@@ -26,7 +26,7 @@ def get_actual_qty(name):
         else:
             frappe.throw(f"Waring: {item.get('item_code')} should have QTY .")
 
-        if item.get('qty') > actual_qty:
+        if float(item.get('qty')) > actual_qty:
             frappe.throw(f"STOP: Quantity should not Exceed Actual Quantity {item.get('item_code')}.")
         else:
             None
