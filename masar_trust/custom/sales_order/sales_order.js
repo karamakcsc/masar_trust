@@ -248,14 +248,14 @@ function update_total_amount_before_discount(frm) {
 
 /////////////////////////////////////////////////////////////////////////////////
 
-frappe.ui.form.on('Sales Order', {
-  validate: function(frm) {
-      frm.doc.items.forEach(function(item, index) {
-          if (item.actual_qty <= 0) {
-              frappe.msgprint(`Error: Actual quantity must be greater than zero for item '${item.item_code}' in row ${index + 1}.`);
-              validated = false;
-              return false; 
-          }
-      });
-  }
-});
+// frappe.ui.form.on('Sales Order', {
+//   validate: function(frm) {
+//       frm.doc.items.forEach(function(item, index) {
+//           if (item.actual_qty <= 0) {
+//               frappe.msgprint(`Error: Actual quantity must be greater than zero for item '${item.item_code}' in row ${index + 1}.`);
+//               validated = false;
+//               return false; 
+//           }
+//       });
+//   }
+// });
