@@ -8,7 +8,7 @@ def on_submit(self,name):
 def get_actual_qty(name):
     # Fetching the length of the table matching the sales order name and item code
     data = frappe.db.sql("""
-        SELECT tsoi.item_code, tsoi.warehouse, tsoi.qty, tsoi.actual_qty
+        SELECT tsoi.item_code, tsoi.warehouse, tsoi.qty
         FROM `tabSales Order` tso 
         INNER JOIN `tabSales Order Item` tsoi ON tsoi.parent = tso.name
         WHERE tso.name = %s
