@@ -95,11 +95,11 @@ doc_events = {
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
 #	}
-    "Sales Order": {
-		# "on_update": "method",
-		"on_submit": "masar_trust.custom.sales_order.sales_order.on_submit"
-		# "on_trash": "method"
-    }
+    # "Sales Order": {
+	# 	# "on_update": "method",
+	# 	"on_submit": "masar_trust.custom.sales_order.sales_order.on_submit"
+	# 	# "on_trash": "method"
+    # }
 	
 }
 
