@@ -100,7 +100,12 @@ doc_events = {
 	# 	"on_submit": "masar_trust.custom.sales_order.sales_order.on_submit"
 	# 	# "on_trash": "method"
     # }
-	
+
+	 "Purchase Order": {
+		# "on_update": "method",
+		"on_submit": "masar_trust.custom.purchase_order.purchase_order.on_submit"
+		# "on_trash": "method"
+    }
 }
 
 
