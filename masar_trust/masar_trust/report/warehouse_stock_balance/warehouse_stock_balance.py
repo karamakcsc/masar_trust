@@ -88,8 +88,8 @@ def get_columns(filters):
 		_("Item") + ":Link/Item:150",
 		_("Item Name") + ":Link/Item:150",
 		_("Item Group") + "::120",
-		_("Value") + ":Currency:120",
-		_("Age") + ":Float:120",
+		# _("Value") + ":Currency:120",
+		# _("Age") + ":Float:120",
 	]
 	return columns
 
