@@ -47,7 +47,7 @@ def execute(filters=None):
         total_stock_value = 0.00
         for wh in warehouse_list:
             row += [qty_dict.bal_qty] if wh.name == warehouse else [0.00]
-            total_stock_value += qty_dict.bal_val if wh.name == warehouse else 0.00
+            # total_stock_value += qty_dict.bal_val if wh.name == warehouse else 0.00
 
         item_balance[(item, item_map[item]["item_group"], description)].append(row)
         item_value.setdefault((item, item_map[item]["item_group"], description), [])
@@ -139,14 +139,14 @@ def get_item_warehouse_map(filters, sle):
             iwb_map[group_by_key] = frappe._dict(
                 {
                     "opening_qty": 0.0,
-                    "opening_val": 0.0,
+                    # "opening_val": 0.0,
                     "in_qty": 0.0,
-                    "in_val": 0.0,
+                    # "in_val": 0.0,
                     "out_qty": 0.0,
-                    "out_val": 0.0,
+                    # "out_val": 0.0,
                     "bal_qty": 0.0,
-                    "bal_val": 0.0,
-                    "val_rate": 0.0,
+                    # "bal_val": 0.0,
+                    # "val_rate": 0.0,
                 }
             )
 
@@ -160,18 +160,18 @@ def get_item_warehouse_map(filters, sle):
 
         if d.posting_date < from_date:
             qty_dict.opening_qty += qty_diff
-            qty_dict.opening_val += value_diff
+            # qty_dict.opening_val += value_diff
 
         elif d.posting_date >= from_date and d.posting_date <= to_date:
             if flt(qty_diff, float_precision) >= 0:
                 qty_dict.in_qty += qty_diff
-                qty_dict.in_val += value_diff
+                # qty_dict.in_val += value_diff
             else:
                 qty_dict.out_qty += abs(qty_diff)
-                qty_dict.out_val += abs(value_diff)
-        qty_dict.val_rate = d.valuation_rate
+                # qty_dict.out_val += abs(value_diff)
+        # qty_dict.val_rate = d.valuation_rate
         qty_dict.bal_qty += qty_diff
-        qty_dict.bal_val += value_diff
+        # qty_dict.bal_val += value_diff
 
     iwb_map = filter_items_with_no_transactions(iwb_map, float_precision)
 
@@ -192,11 +192,11 @@ def get_stock_ledger_entries(filters, items):
             sle.warehouse,
             sle.posting_date,
             sle.actual_qty,
-            sle.valuation_rate,
+            # sle.valuation_rate,
             sle.company,
             sle.voucher_type,
             sle.qty_after_transaction,
-            sle.stock_value_difference,
+            # sle.stock_value_difference,
             sle.item_code.as_("name"),
             sle.voucher_no,
             sle.stock_value,
