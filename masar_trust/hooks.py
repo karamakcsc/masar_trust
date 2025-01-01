@@ -277,3 +277,10 @@ fixtures = [
         ]
     }
 ]
+
+
+from erpnext.accounts.report.general_ledger import  general_ledger
+from masar_trust.override import general_ledger
+
+general_ledger.get_gl_entries = general_ledger.get_gl_entries_override
+	

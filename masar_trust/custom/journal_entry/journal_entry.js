@@ -6,25 +6,20 @@
 // });
 /// Series Selection///
 frappe.ui.form.on("Journal Entry","voucher_type", function(frm) {
-if (frm.doc.voucher_type == "Cash Entry-Baghdad") {
-  frm.set_value('naming_series', 'ACC-BC-.YYYY.-')
-  refresh_field("naming_series");
-}
-else if (frm.doc.voucher_type == "Depreciation Entry") {
-  frm.set_value('naming_series', 'ACC-DP-.YYYY.-')
-  refresh_field("naming_series");
-}
-else if (frm.doc.voucher_type == "Discount Entry") {
-  frm.set_value('naming_series', 'ACC-DIS-.YYYY.-')
-  refresh_field("naming_series");
-}
-else if (frm.doc.voucher_type == "Bank Entry") {
-  frm.set_value('naming_series', 'ACC-BE-.YYYY.-')
-  refresh_field("naming_series");
-}
-else {
-  frm.set_value('naming_series', 'ACC-JV-.YYYY.-')
-  refresh_field("naming_series");
+
+});
+frappe.ui.form.on("Journal Entry" , {
+  refresh: function(frm){
+    GetSeries(frm);
+  }, 
+  onload:function(frm){
+    GetSeries(frm);
+  } ,
+  setup: function(frm){
+    GetSeries(frm);
+  } ,
+  voucher_type:function(frm){
+    GetSeries(frm);
   }
 });
 
@@ -63,3 +58,27 @@ frappe.ui.form.on("Journal Entry","refresh", function(frm) {
                  d.project = frm.doc.project;
              }
        });
+
+
+function GetSeries(frm){
+  if (frm.doc.voucher_type == "Cash Entry-Baghdad") {
+    frm.set_value('naming_series', 'ACC-BC-.YYYY.-')
+    refresh_field("naming_series");
+  }
+  else if (frm.doc.voucher_type == "Depreciation Entry") {
+    frm.set_value('naming_series', 'ACC-DP-.YYYY.-')
+    refresh_field("naming_series");
+  }
+  else if (frm.doc.voucher_type == "Discount Entry") {
+    frm.set_value('naming_series', 'ACC-DIS-.YYYY.-')
+    refresh_field("naming_series");
+  }
+  else if (frm.doc.voucher_type == "Bank Entry") {
+    frm.set_value('naming_series', 'ACC-BE-.YYYY.-')
+    refresh_field("naming_series");
+  }
+  else {
+    frm.set_value('naming_series', 'ACC-JV-.YYYY.-')
+    refresh_field("naming_series");
+    }
+}
