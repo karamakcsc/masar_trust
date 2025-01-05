@@ -58,10 +58,10 @@ frappe.ui.form.on("Journal Entry","refresh", function(frm) {
                  d.project = frm.doc.project;
              }
        });
-
+//
 
 function GetSeries(frm){
-  if(doc.__islocal) {
+  if(frm.doc.__islocal === 1 ) {
   if (frm.doc.voucher_type == "Cash Entry-Baghdad") {
     frm.set_value('naming_series', 'ACC-BC-.YYYY.-')
     refresh_field("naming_series");
@@ -82,4 +82,5 @@ function GetSeries(frm){
     frm.set_value('naming_series', 'ACC-JV-.YYYY.-')
     refresh_field("naming_series");
     }
-}}
+}
+}
