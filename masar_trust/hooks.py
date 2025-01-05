@@ -279,8 +279,8 @@ fixtures = [
 ]
 
 
-from erpnext.accounts.report.general_ledger import  general_ledger
+from erpnext.accounts.report.general_ledger import  general_ledger as erp_gl
 from masar_trust.override import general_ledger
 
-general_ledger.get_gl_entries = general_ledger.get_gl_entries_override
+erp_gl.get_result_as_list = general_ledger.get_result_as_list_override
 	
