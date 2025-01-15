@@ -30,9 +30,17 @@ frappe.query_reports["Sales Invoice Cost"] = {
 							},
 						  {
 								"fieldname": "customer_name",
-								"label": __("Customer Name"),
+								"label": __("Customer ID"),
 								"fieldtype": "Link",
 								"options": "Customer",
+								"width": 100,
+								"reqd": 0,
+							},
+							{
+								"fieldname": "customer_group",
+								"label": __("Customer Group"),
+								"fieldtype": "Link",
+								"options": "Customer Group",
 								"width": 100,
 								"reqd": 0,
 							},

@@ -17,6 +17,7 @@ def get_data(filters):
 	if(filters.get('inv_no')):conditions += f" AND tsii.parent LIKE '%{filters.get('inv_no')}' "
 	if(filters.get('item_group')):conditions += f" AND tsii.item_group='{filters.get('item_group')}' "
 	if(filters.get('customer_name')):conditions += f" AND tsi.customer_name LIKE '%{filters.get('customer_name')}' "
+	if(filters.get('customer_group')):conditions += f" AND tc.customer_group='{filters.get('customer_group')}' "
 
 	#SQL Query
 	# data = frappe.db.sql(f""" Select `Sales Invoice`,`Posting Date`,`Customer Name`,`Item Code` ,`Item Name`,
