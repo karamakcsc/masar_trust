@@ -25,7 +25,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Bulk Update Sales Order",
+   "options": "Update Sales Order",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -44,6 +44,7 @@
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Posting Date",
    "read_only": 1
   },
@@ -55,11 +56,13 @@
    "fieldname": "sales_orders",
    "fieldtype": "Table",
    "label": "Sales Orders",
-   "options": "Bulk Update Sales Order Details"
+   "options": "Update Sales Order Details"
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
    "options": "\nOn Hold\nClosed"
   }
@@ -67,10 +70,10 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-06 12:26:52.455993",
+ "modified": "2025-02-10 11:49:32.681416",
  "modified_by": "Administrator",
  "module": "Masar Trust",
- "name": "Bulk Update Sales Order",
+ "name": "Update Sales Order",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

@@ -70,7 +70,7 @@
  "modified": "2025-02-06 13:30:09.664312",
  "modified_by": "Administrator",
  "module": "Masar Trust",
- "name": "Bulk Update Sales Order Details",
+ "name": "Update Sales Order Details",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

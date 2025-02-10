@@ -7,7 +7,7 @@ from erpnext.selling.doctype.sales_order.sales_order import SalesOrder
 update_status = SalesOrder.update_status
 
 
-class BulkUpdateSalesOrder(Document):
+class UpdateSalesOrder(Document):
     def on_submit(self):
         self.update_so_status()
     
