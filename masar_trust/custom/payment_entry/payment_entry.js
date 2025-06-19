@@ -24,6 +24,11 @@ else if (frm.doc.mode_of_payment == "نقدي صيانة" ){
   frm.set_value('cost_center', '11 - مركز الصيانة - TRUST')
   frm.refresh_fields();
 }
+else if (frm.doc.mode_of_payment == "نقدي معرض سامسونج" ){
+  frm.set_value('branch', 'معرض سامسونج')
+  frm.set_value('cost_center', '15 - المعرض الرئيسي (الكرادة) - TRUST')
+  frm.refresh_fields();
+}
 else if (frm.doc.mode_of_payment == "Cheque" ){
   frm.set_value('naming_series', 'ACC-PAYC-.YYYY.-')
   frm.refresh_fields();
